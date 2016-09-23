@@ -28,11 +28,13 @@ A user wants to easily deploy an application which can be accessed by a public U
 
 The main reason this bot is beneficial as it alleviates the developers from the burden of doing the deployment operations of the applications.
 
-## **   Bot Description**
+## **Bot Description**
 
-*What does your bot do? *The main purpose of the bot is to expedite the deployment process. The configuration he needs to provide are the credentials of the database and dockerhub and reset everything is handled by the bot. 
+*What does your bot do? 
+*The main purpose of the bot is to expedite the deployment process. The configuration he needs to provide are the credentials of the database and dockerhub and reset everything is handled by the bot. 
 
-*Why bot is good solution?*A bot is a good solution to this problem as the tasks are repetitive and can be automated.
+*Why bot is good solution?
+*A bot is a good solution to this problem as the tasks are repetitive and can be automated.
 
 *Does your bot have a conversation with users (e.g. hubot), or does it just response to events (e.g., coveralls bot on github)?*
 
@@ -42,21 +44,26 @@ DockrRockr Bot sends a notification to the user on slack whenever an event occur
 
 * *Create a wireframe mockup of your bot in action.*
 
-![image alt text](image_0.png)
+![new mockup 1](https://media.github.ncsu.edu/user/4500/files/829250ce-810d-11e6-926a-8c71eb432759)
 
-![image alt text](image_1.png)
+![new mockup 2](https://media.github.ncsu.edu/user/4500/files/846fd25e-810d-11e6-913f-0cf9fda97862)
 
-
+
+
+
+
+
+
 
 * *Create a storyboard that illustrates the primary task that a user undergoes with bot.*
 
-![image alt text](image_2.png)
+![storyboard](https://media.github.ncsu.edu/user/4007/files/bc7637ca-810c-11e6-9df1-45b874a70249 )
 
 ## **Architecture Design**
 
 * *Create a diagram that illustrates the components of your bot, the platform it is embedded in, third party services it may use, data storage it may require, etc.*
 
-![image alt text](image_3.png)
+![dockerrocker_architecure_diagram](https://media.github.ncsu.edu/user/4148/files/80412c24-810c-11e6-8bef-c1c206f84641)
 
 * *Describe the architecture components in text. This should be a few paragraphs*
 
