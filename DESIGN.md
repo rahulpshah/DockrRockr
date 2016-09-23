@@ -14,7 +14,7 @@ Team Members:
 
 ## **Problem Statement**
 
-*What is the problem? *
+*What is the problem?*
 
 A user wants to easily deploy an application which can be accessed by a public URL. The user faces a myriad of problems which are stated below: 
 
@@ -30,13 +30,13 @@ The main reason this bot is beneficial as it alleviates the developers from the 
 
 ## **Bot Description**
 
-*What does your bot do? 
-*The main purpose of the bot is to expedite the deployment process. The configuration he needs to provide are the credentials of the database and dockerhub and reset everything is handled by the bot. 
+*What does our bot do?*
+The main purpose of the bot is to expedite the deployment process. The configuration he needs to provide are the credentials of the database and dockerhub and reset everything is handled by the bot. 
 
-*Why bot is good solution?
-*A bot is a good solution to this problem as the tasks are repetitive and can be automated.
+*Why bot is good solution?*
+A bot is a good solution to this problem as the tasks are repetitive and can be automated.
 
-*Does your bot have a conversation with users (e.g. hubot), or does it just response to events (e.g., coveralls bot on github)?*
+*Does our bot have a conversation with users (e.g. hubot), or does it just response to events (e.g., coveralls bot on github)?*
 
 DockrRockr Bot sends a notification to the user on slack whenever an event occurs on Docker Hub (i.e. a new docker image is generated for the new code that the user pushed on github). Then it starts a conversation with the user whether he wants to deploy the new docker image to the existing EC2 instance. Based on the user response, the bot deploys the new image and provides the user with the link to the deployed content
 
