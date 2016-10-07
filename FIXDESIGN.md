@@ -27,8 +27,8 @@ Rails App with PostgreSQL or MySQL database: https://semaphoreci.com/community/t
 
 ### Use Cases:
 ##### 1. Creating the Dockerfile + ChatOps
-The bots chats with the user to gather the requirements needed to build the Dockerfile. <br/>
-The bot uses this information to create a generic dockerfile which it will use to store it on DockerHub. <br/>
+A. The bots chats with the user to gather the requirements needed to build the Dockerfile. <br/>
+B. The bot uses this information to create a generic dockerfile which it will use to store it on DockerHub. <br/>
 
 ##### 2. Continuous Deployment of RoR application
 Once the user pushes new ode to the Git repository, it will trigger the creation of the image on DockerHub. <br/>
@@ -40,7 +40,7 @@ The user  receives a notification on Slack once the image is ready. <br/>
 ## Action 3: You don't need DockerHub, you can use your own Docker registry.<br/>
 
 ##### DockerHub vs Own Registry
-From the website of Docker Registry,
+From the website of Docker Registry, <br/>
 *Users looking for a zero maintenance, ready-to-go solution are encouraged to head-over to the Docker Hub, which provides a free-to-use, hosted Registry, plus additional features (organization accounts, automated builds, and more).* <br/>
 Since we are doing continuous deployment, I think it would be better if we use DockerHub. 
 
