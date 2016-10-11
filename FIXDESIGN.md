@@ -30,11 +30,12 @@ Rails App with PostgreSQL or MySQL database: https://semaphoreci.com/community/t
 A. The bots chats with the user to gather the requirements needed to build the Dockerfile. <br/>
 B. The bot uses this information to create a generic dockerfile which it will use to store it on DockerHub. <br/>
 
-##### 2. Continuous Deployment of RoR application
+##### 2. Notifying the user when the Docker image is ready
 Once the user pushes new ode to the Git repository, it will trigger the creation of the image on DockerHub. <br/>
+The user  receives a notification on Slack once the image is ready.<br/>
 
-##### 3. Notifying the user when the Docker image is ready
-The user  receives a notification on Slack once the image is ready. <br/>
+##### 3. Deploy the Docker Image on AWS.
+Ask the user whether he wants to deploy the latest docker image, if yes, deploy it on AWS. <br/>
 
 
 ## Action 3: You don't need DockerHub, you can use your own Docker registry.<br/>
