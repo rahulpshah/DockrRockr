@@ -5,11 +5,15 @@ const MemoryDataStore = require('@slack/client').MemoryDataStore;
 const CLIENT_EVENTS = require('@slack/client').CLIENT_EVENTS;
 const RTM_EVENTS = require('@slack/client').RTM_EVENTS;
 
+var FSlack = require('node-slack-upload');
+var fs = require('fs');
 class Bot {
   constructor(opts) {
     let slackToken = opts.token;
     let autoReconnect = opts.autoReconnect || true;
     let autoMark = opts.autoMark || true;
+
+    this.fslack = new FSlack(opts.token);
 
     this.slack = new RtmClient(slackToken, { 
       // Sets the level of logging we require
@@ -84,6 +88,28 @@ class Bot {
             cb();
         }
         });
+    }
+
+    fileUpload(path, channel, cb) 
+    {
+        this.fslack.uploadFile({
+    file: fs.createReadStream( path),
+    filetype: 'post',
+    title: 'Docker File',
+    initialComment: 'Here is your docker file!',
+    channels: channel.id
+}, function(err) {
+    if (err) {
+        console.error(err);
+    }
+    else {
+        console.log('done');
+    }
+    if (cb) {
+            cb();
+        }
+});
+
     }
 }
 
