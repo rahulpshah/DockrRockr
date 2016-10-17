@@ -1,0 +1,56 @@
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" />
+<script type="text/javascript">
+</script>
+<html>
+<head>
+    <title>This is docker fill in page</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/" method="post">
+        <div class="row">
+            <label for="app" >Name of the app</label>
+            <input type="text" name="app">
+        </div>
+
+        <div class="row">
+            <label for="maintainer" placeholder="z">Maintainer Name</label>
+            <input type="text" name="maintainer" id="maintainer">
+        </div>
+
+        <div class="row">
+            <label for="repo" placeholder="z">Github Repository</label>
+            <input type="text" name="repo">
+        </div>
+
+        <div class="row">
+            <label for="token" placeholder="z">Github Token</label>
+            <input type="text" name="token">
+        </div>
+        
+        <div class="row">
+            <label for="framework">Framework</label>
+            <select name="framework">
+                <option>Ruby On Rails</option>
+                <option>Django</option>
+            </select>
+        </div>
+        <div class="row">
+            <label for="db">Database</label>
+            <select name="db">
+                <option>Postgres</option>
+                <option>MYSQL</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <label for="port">Port</label>
+            <input type="text" name="port">
+        </div>
+        <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>

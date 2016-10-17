@@ -10,7 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "@slack/client": "^3.6.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
     "fs": "0.0.1-security",
-    "node-slack-upload": "^1.1.1"
+    "node-slack-upload": "^1.1.1",
+    "path": "^0.12.7",
+    "redis": "^2.6.2"
   }
 }

@@ -7,7 +7,6 @@ const RTM_EVENTS = require('@slack/client').RTM_EVENTS;
 
 var FSlack = require('node-slack-upload');
 var fs = require('fs');
-
 class Bot {
   constructor(opts) {
     let slackToken = opts.token;
@@ -90,7 +89,6 @@ class Bot {
         }
       });
     }
-
     fileUpload(path, channel, cb) 
     {
       this.fslack.uploadFile({

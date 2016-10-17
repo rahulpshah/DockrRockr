@@ -3,18 +3,30 @@ var fs = require('fs');
 const redis = require('redis');
 const client = redis.createClient();
 
+//Import bot
 let Bot = require('./bot.js');
 
+//Bot construction
 const bot = new Bot({
   token: process.env.SLACK_TOKEN,
   autoReconnect: true,
   autoMark: true
 });
 
+
+//Hello Message
 bot.respondTo('hello', (message, channel, user) => {
   bot.send(`Hello to you too, ${user.name}!`, channel)
 }, true);
 
+
+//HTML message
+bot.respondTo('docker', (path, channel, user) => {
+    bot.send('Please fill this form to create a dockerfile\n http://localhost:8081/', channel);
+  }, true);
+
+
+//Message to uploadFile
 bot.respondTo('create', (path, channel, user) => {
   bot.fileUpload(`package.json`, channel, function(err,res) {
   	bot.send('file uploaded',channel);
@@ -79,4 +91,3 @@ fs.readFile("DockerFile", 'utf8', function (err,data) {
      if (err) return console.log(err);
   });
 });
- 
