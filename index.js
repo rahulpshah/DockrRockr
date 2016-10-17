@@ -5,6 +5,10 @@ const client = redis.createClient();
 
 //Import bot
 let Bot = require('./bot.js');
+//Import server
+let Serve = require('./src/app/server.js')
+
+//Mock JSON
 
 //Bot construction
 const bot = new Bot({
@@ -13,24 +17,33 @@ const bot = new Bot({
   autoMark: true
 });
 
+const server = new Serve();
+var jsondata = { app: 'DockerTest',
+                      maintainer: 'Krunal Gala',
+                      repo: 'github.com/krunal3103',
+                      token: 'sahjhdajknjdshj',
+                      framework: 'Ruby On Rails',
+                      db: 'Postgres',
+                      port: '801' }
 
 //Hello Message
 bot.respondTo('hello', (message, channel, user) => {
-  bot.send(`Hello to you too, ${user.name}!`, channel)
+  bot.send(`Hi, ${user.name}! What can I do for you today?`, channel)
 }, true);
 
 
 //HTML message
-bot.respondTo('docker', (path, channel, user) => {
+bot.respondTo('Create a Docker', (path, channel, user) => {
     bot.send('Please fill this form to create a dockerfile\n http://localhost:8081/', channel);
   }, true);
 
-
 //Message to uploadFile
-bot.respondTo('create', (path, channel, user) => {
-  bot.fileUpload(`package.json`, channel, function(err,res) {
-  	bot.send('file uploaded',channel);
-  })
+bot.respondTo('Show File', (path, channel, user) => {
+	bot.createDockerFile(jsondata, (err) => {
+		bot.fileUpload(`DockerFile`, channel, function(err,res) {
+	  	bot.send('file uploaded',channel);
+	  })	
+	})
 }, true);
 
 //Redis connection
@@ -74,20 +87,4 @@ function getArgs(msg) {
 }
 
 
-//Create Dockerfile from template and replace with user credentials
-fs.createReadStream('Files/DockerFileTemplate').pipe(fs.createWriteStream('DockerFile'));
-var mapObj = {FullName:"Krunal Gala",Email:"krunal3103@gmail.com",AppName:"DockerRocker"};
 
-var re = new RegExp(Object.keys(mapObj).join("|"),"gi");
-fs.readFile("DockerFile", 'utf8', function (err,data) {
-  if (err) {
-    return console.log(err);
-  }
-  var result = data.replace(re, function(matched){
-  return mapObj[matched];
-});
-
-  fs.writeFile("DockerFile", result, 'utf8', function (err) {
-     if (err) return console.log(err);
-  });
-});
