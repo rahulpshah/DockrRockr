@@ -33,7 +33,7 @@ class Serve {
         obj = req.body;
         console.log(obj); 
         
-        bot1.slack.sendMessage('message', 'C2PSNF0D6');
+        bot
         res.end("Your request for new docker file is being processed. Bot will respond with the file soon.")
     });
     var server = app.listen(8081, function(){
