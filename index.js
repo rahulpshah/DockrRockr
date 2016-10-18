@@ -70,7 +70,10 @@ bot.respondTo('store', (message, channel, user) => {
 
 //Retrieve from Redis
 bot.respondTo('retrieve', (message, channel, user) => {
-  console.log(user.name)  
+  console.log(user.name);
+
+  console.log('++++++++'+channel);
+  //console.log(user);  
   client.get(user.name, (err, reply) => {
 	  if (err) {
 	    console.log(err);

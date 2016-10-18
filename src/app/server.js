@@ -6,7 +6,14 @@ var querystring = require('querystring');
 var url = require('url');
 var bodyParser = require('body-parser');
 //TODO: replace filename to Bot
-var bot = require("../../bot.js")
+var bot = require("../../bot.js");
+
+const bot1 = new bot({
+  token: process.env.SLACK_TOKEN,
+  autoReconnect: true,
+  autoMark: true
+});
+
 class Serve {
   
   constructor() {
@@ -25,6 +32,8 @@ class Serve {
         var obj = {}
         obj = req.body;
         console.log(obj); 
+        
+        bot1.slack.sendMessage('message', 'C2PSNF0D6');
         res.end("Your request for new docker file is being processed. Bot will respond with the file soon.")
     });
     var server = app.listen(8081, function(){
