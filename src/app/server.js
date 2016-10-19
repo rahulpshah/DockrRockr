@@ -6,9 +6,8 @@ var querystring = require('querystring');
 var url = require('url');
 var bodyParser = require('body-parser');
 //TODO: replace filename to Bot
-var bot = require("../../bot.js");
-
-const bot1 = new bot({
+var Bot = require("../../bot.js");
+const bot = new Bot({
   token: process.env.SLACK_TOKEN,
   autoReconnect: true,
   autoMark: true
@@ -29,11 +28,18 @@ class Serve {
     });
 
     app.post('/', function(req, res){
-        var obj = {}
-        obj = req.body;
-        console.log(obj); 
-        
-        bot
+      //TODO: replace this by mock json file
+        var jsondata = { 
+          app: 'DockerTest',
+          maintainer: 'Rahul Shah',
+          repo: 'github.com/rahulpshah',
+          token: 'sahjhdajknjdshj',
+          framework: 'Ruby On Rails',
+          db: 'Postgres',
+          port: '801' ,
+          channel: bot.slack.dataStore.getChannelByName("general")
+        }
+        bot.createDockerFile(jsondata);
         res.end("Your request for new docker file is being processed. Bot will respond with the file soon.")
     });
     var server = app.listen(8081, function(){

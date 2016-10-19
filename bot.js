@@ -89,38 +89,6 @@ class Bot {
         }
       });
     }
-
-    createDockerFile(json, cb) {
-      //Create Dockerfile from template and replace with user credentials
-      var source = 'Files/DockerFileTemplate';
-      var target = 'DockerFile';
-        fs.copy(source, target, function(){
-          var mapObj = {FullName:json.maintainer,Email:"test@ncsu.edu",AppName:json.app};
-          var re = new RegExp(Object.keys(mapObj).join("|"),"gi");
-          //console.log(mapObj);
-          fs.readFile("DockerFile", 'utf8', function (err,data) {
-          if (err) {
-            return console.log(err);
-          }
-          var result = data.replace(re, function(matched){
-          return mapObj[matched];
-          });
-
-          fs.writeFile("DockerFile", result, 'utf8', function (err) {
-             if (err) 
-              return console.log(err);
-             if (cb) 
-              {
-                cb();
-              }
-            });
-          });
-        });
-      
-      
-      
-    }
-    
     fileUpload(path, channel, cb) 
     {
       this.fslack.uploadFile({
@@ -140,6 +108,41 @@ class Bot {
             cb();
           }
         });
+    }
+
+    createDockerFile(json, cb) {
+      //Create Dockerfile from template and replace with user credentials
+      var source = 'Files/DockerFileTemplate';
+      var target = 'DockerFile'; 
+      var self = this;
+        fs.copy(source, target, function(){
+          var mapObj = {FullName:json.maintainer,Email:"test@ncsu.edu",AppName:json.app};
+          var re = new RegExp(Object.keys(mapObj).join("|"),"gi");
+          fs.readFile("DockerFile", 'utf8', function (err,data) {
+          if (err) {
+            return console.log(err);
+          }
+          var result = data.replace(re, function(matched){
+          return mapObj[matched];
+          });
+
+          fs.writeFile("DockerFile", result, 'utf8', function (err) {
+             if (err) {
+                console.log(err);
+             }
+             else
+                {
+                  self.fileUpload(`DockerFile`, json.channel, function(err,res) {
+                  self.send('file uploaded',json.channel);
+                });
+              }
+            });
+          });
+          if(cb)
+          {
+            cb();
+          }
+        }); 
     }
 }
 

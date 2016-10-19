@@ -18,13 +18,7 @@ const bot = new Bot({
 });
 
 const server = new Serve();
-var jsondata = { app: 'DockerTest',
-                      maintainer: 'Krunal Gala',
-                      repo: 'github.com/krunal3103',
-                      token: 'sahjhdajknjdshj',
-                      framework: 'Ruby On Rails',
-                      db: 'Postgres',
-                      port: '801' }
+
 
 //Hello Message
 bot.respondTo('hello', (message, channel, user) => {
@@ -33,18 +27,12 @@ bot.respondTo('hello', (message, channel, user) => {
 
 
 //HTML message
-bot.respondTo('Create a Docker', (path, channel, user) => {
+bot.respondTo('Create a Docker', (path, channel, user) => 
+{
     bot.send('Please fill this form to create a dockerfile\n http://localhost:8081/', channel);
-  }, true);
 
-//Message to uploadFile
-bot.respondTo('Show File', (path, channel, user) => {
-	bot.createDockerFile(jsondata, (err) => {
-		bot.fileUpload(`DockerFile`, channel, function(err,res) {
-	  	bot.send('file uploaded',channel);
-	  })	
-	})
 }, true);
+
 
 //Redis connection
 client.on('error', (err) => {
