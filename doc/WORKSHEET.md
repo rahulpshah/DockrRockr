@@ -6,9 +6,9 @@
 
 | Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
 | ------------- | ------------- | ------------  |  ------------
-| Task 1    | Finalize Architectural Desgin |   Complete       | #1
+| Task 1    | Finalize Architectural Desgin |   Complete       | [#1](/../../issues/1)
 | | |     |
-| Task 2| Setup Slack Bot | Complete    | #2
+| Task 2| Setup Slack Bot | Complete    | #2(/../../issues/2)
 | Subflow 1| |     |
 | | |     |
 | Task 3| Understand GitHub API |     | &nbsp;
