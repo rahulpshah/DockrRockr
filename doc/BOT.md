@@ -16,21 +16,20 @@ Samrudhi Sharma - ssharm17
 
 ### Use Cases
 
-1. Creating the Dockerfile + ChatOps
-The bots chats with the user to gather the requirements needed to build the Dockerfile.
-The bot uses this information to create a generic dockerfile which it will use to store it on DockerHub.
-
 2. Notifying the user when the Docker image is ready
 Once the user pushes new ode to the Git repository, it will trigger the creation of the image on DockerHub.
 The user  receives a notification on Slack once the image is ready.
 
 3. Deploy the Docker Image on AWS.
-Ask the user whether he wants to deploy the latest docker image, if yes, deploy it on AWS.
+
 
 ```
 Use Case 1 : Creating the Dockerfile + ChatOps
 1 Preconditions
-   User must have an account on slack.
+   User must have a Slack account.
+   User must have a GitHub account.
+   User must have a DockerHub account.
+   User must have an AWS account, and token.
 2 Main Flow
    User will invoke bot using command 'hello' [S1]. Bot will return a response[S2]. User gives a command of creating a docker file [S3]. User completes form to fill in user details[S4].
 3 Subflows
@@ -54,16 +53,16 @@ Use Case 2 : Notifying the user when the Docker image is ready
 ```
 ```
 Use Case 3 : Deploy the Docker Image on AWS.
+
+Ask the user whether he wants to deploy the latest docker image, if yes, deploy it on AWS.
+
 1 Preconditions
-   User must have google calendar api tokens in system.
+   User must have AWS access.
 2 Main Flow
-   User will request meeting and provide list of attendees [S1]. Bot will provide  possible meeting times and user confirms [S2]. Bot creates meeting and posts link [S3].
+   User will request deployment of the lastest docker image [S1]. Bot deploys image and posts link [S2].
 3 Subflows
-  [S1] User provides /meeting command with @username,@username list.
-  [S2] Bot will return list of meeting times. User will confirm time.
-  [S3] Bot will create meeting and post link to google calendar event.
-4 Alternative Flows
-  [E1] No team members are available.
+  [S1] User writes command 'docker'.
+  [S2] Bot will return link. The message looks like: "Your app has been deployed at http://amazonaws.com/mock-url"
 ```
 
 ### Mocking Service Component
