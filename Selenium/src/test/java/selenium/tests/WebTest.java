@@ -45,8 +45,8 @@ public class WebTest
 		WebElement pw = driver.findElement(By.id("password"));
 
 		// Type in our test user login info.
-		email.sendKeys("ssharm17@ncsu.edu");
-		pw.sendKeys("Karuna215");
+		email.sendKeys("test@ncsu.edu");
+		pw.sendKeys("test");
 
 		// Click
 		WebElement signin = driver.findElement(By.id("signin_btn"));
@@ -72,7 +72,7 @@ public class WebTest
 	public void checkHelloConversation()
 	{
 		
-		//Testing for request response below:
+		//Happy Path for Use Case 1:
 		WebElement messageBot = driver.findElement(By.id("message-input"));
 		messageBot.sendKeys("hello");
 		messageBot.sendKeys(Keys.RETURN);
@@ -104,6 +104,8 @@ public class WebTest
 		
 		wait.withTimeout(10, TimeUnit.SECONDS).ignoring(StaleElementReferenceException.class);
 		
+		//Fail Path for Use Case 1:
+		assertNotEquals(getIDHelloResponseContent.getText(), "Hi! What can I do for you today?");
 	}
 	
 	
@@ -140,9 +142,9 @@ public class WebTest
 		assertEquals(getIDHelloResponseContent.getText().split("\\r?\\n")[1].split("#")[0],("http://localhost:8081"));
 		
 		wait.withTimeout(10, TimeUnit.SECONDS).ignoring(StaleElementReferenceException.class);
-		//Show interaction steps for form here, fall created response etc.
 		
 		//Fail Path for Use Case 1:
+		assertNotEquals(getIDHelloResponseContent.getText().split("\\r?\\n")[1].split("#")[0],("http://localhost:8080"));
 		
 	}
 	
@@ -185,6 +187,7 @@ public class WebTest
 		wait.withTimeout(10, TimeUnit.SECONDS).ignoring(StaleElementReferenceException.class);
 		
 		//Fail Path for Use Case 3:
+		assertNotEquals(getIDHelloResponseContent.getText().split("\\r?\\n")[0], "Your app has been deployed at http://dockerhub.com/mock-url");
 		
 	}
 
