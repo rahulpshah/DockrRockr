@@ -112,9 +112,9 @@ class Bot {
     }
     
     pushToGit(path,owner,repo,cb){
-      var token = "token lolololl";
+      var token = "token lololol";
       var owner = 'jsharda';
-      var repo = 'DockrRockr';
+      var repo = 'dummy';
 
       var urlRoot = "https://github.ncsu.edu/api/v3";
     
@@ -135,14 +135,53 @@ class Bot {
     request(options, function (error, response, body) {
       //var obj = JSON.parse(body);
       if(!error){
-      console.log(body);
-      console.log(fs.readFileSync(path, 'utf8').toString('base64'));
+      //console.log(body);
+      //console.log(fs.readFileSync(path, 'utf8').toString('base64'));
       if(cb){
         cb();
         }
       }
     });
+  }
+
+      createGitHook(owner,repo,cb){
+      var token = "token lolol";
+      var owner = 'jsharda';
+      var repo = 'dummy';
+
+      var urlRoot = "https://github.ncsu.edu/api/v3";
+    
+      var options = {
+      url: urlRoot + '/repos/' + owner + "/"+repo+"/hooks",
+      method: 'POST',
+      headers: {
+        //"User-Agent": "EnableIssues",
+        "content-type": "json",
+        "Authorization": token
+      },
+       json: {
+      "name": "web",
+      "active": true,
+      "events": ["push"],
+      "config": {
+        "url": "https://hooks.slack.com/services/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",
+        "content_type": "json"
       }
+    }
+    };
+
+    request(options, function (error, response, body) {
+      //var obj = JSON.parse(body);
+      if(!error){
+
+      //console.log(body);
+      console.log(response);
+      if(cb){
+        cb();
+        }
+      }
+    });
+  }
 
     
 
@@ -170,6 +209,9 @@ class Bot {
                 {
                   self.fileUpload(`DockerFile`, json.channel, function(err,res) {
                     self.send('file uploaded', json.channel);
+                    self.createGitHook(json.gitUName,json.repo,function(err,res) {
+                      self.send('Git Hook Created', json.channel);
+                  });
                     self.pushToGit(`DockerFile`, json.gitUName,json.repo, function(err,res) {
                       self.send('File Pushed To Git', json.channel);
                   });
