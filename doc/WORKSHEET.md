@@ -13,9 +13,6 @@
 | Subflow 1| |     |
 | | |     |
 | | |     |
-| Task 3| Understand GitHub API |  Complete   | &nbsp;
-| | |     |
-| | |     |
 | Use Case  1    | Creating the Dockerfile + ChatOps       |   &nbsp;| &nbsp;
 | Subflow      | 1  Finalize Database Schema       | Complete|  #33, #38, #78
 | Subflow      | 2  Create Redis Database         | Complete |   &nbsp;
