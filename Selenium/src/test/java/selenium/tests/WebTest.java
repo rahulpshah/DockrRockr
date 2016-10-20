@@ -88,9 +88,12 @@ public class WebTest
 		
 	    WebElement getIDHelloResponseContent = driver.findElement(
 				By.xpath("//ts-message[contains(@id,'"+(index+1)+"')]/div/span[@class='message_body']"));
+	    
+	    WebElement getIDHelloResponseContentName = driver.findElement(
+				By.xpath("//ts-message[contains(@id,'"+(index+1)+"')]/div/span[@class='message_body']/span[@class='mention']"));
 		
 		
-		assertEquals(getIDHelloResponseContent.getText(), "Hi, ssharm17! What can I do for you today?");
+		assertEquals(getIDHelloResponseContent.getText(), "Hi, "+getIDHelloResponseContentName.getText()+"! What can I do for you today?");
 		
 	}
 	
