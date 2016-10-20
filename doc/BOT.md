@@ -27,10 +27,33 @@ The user  receives a notification on Slack once the image is ready.
 3. Deploy the Docker Image on AWS.
 Ask the user whether he wants to deploy the latest docker image, if yes, deploy it on AWS.
 
-
-This is an example use case:
 ```
-Use Case: Create a meeting
+Use Case 1 : Creating the Dockerfile + ChatOps
+1 Preconditions
+   User must have an account on slack.
+2 Main Flow
+   User will invoke bot using command 'hello' [S1]. Bot will return a response[S2]. User gives a command of creating a docker file [S3]. User completes form to fill in user details[S4].
+3 Subflows
+  [S1] User writes command as 'hello'
+  [S2] Bot will return a response with the user's username. 
+  [S3] User writes the command, 'Create a Docker'.
+  [S4] Bot responds with "Please fill this form to create a dockerfile, http://localhost:8081/"
+```
+```
+Use Case 2 : Notifying the user when the Docker image is ready
+1 Preconditions
+   User must have google calendar api tokens in system.
+2 Main Flow
+   User will request meeting and provide list of attendees [S1]. Bot will provide  possible meeting times and user confirms [S2]. Bot creates meeting and posts link [S3].
+3 Subflows
+  [S1] User provides /meeting command with @username,@username list.
+  [S2] Bot will return list of meeting times. User will confirm time.
+  [S3] Bot will create meeting and post link to google calendar event.
+4 Alternative Flows
+  [E1] No team members are available.
+```
+```
+Use Case 3 : Deploy the Docker Image on AWS.
 1 Preconditions
    User must have google calendar api tokens in system.
 2 Main Flow
