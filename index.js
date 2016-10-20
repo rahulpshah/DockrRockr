@@ -56,12 +56,15 @@ bot.respondTo('store', (message, channel, user) => {
   });
 }, true);
 
+
+bot.respondTo('deploy', (message, channel, user) => {
+  bot.deployImage(function(data){
+      bot.send("Your app has been deployed at " + data, channel);
+  });
+
+});
 //Retrieve from Redis
 bot.respondTo('retrieve', (message, channel, user) => {
-  console.log(user.name);
-
-  console.log('++++++++'+channel);
-  //console.log(user);  
   client.get(user.name, (err, reply) => {
 	  if (err) {
 	    console.log(err);

@@ -4,6 +4,7 @@ const RtmClient = require('@slack/client').RtmClient;
 const MemoryDataStore = require('@slack/client').MemoryDataStore;
 const CLIENT_EVENTS = require('@slack/client').CLIENT_EVENTS;
 const RTM_EVENTS = require('@slack/client').RTM_EVENTS;
+var request = require('request');
 
 var FSlack = require('node-slack-upload');
 var fs = require('fs-extra');
@@ -109,6 +110,41 @@ class Bot {
           }
         });
     }
+    
+    pushToGit(path,owner,repo,cb){
+      var token = "token lolololl";
+      var owner = 'jsharda';
+      var repo = 'DockrRockr';
+
+      var urlRoot = "https://github.ncsu.edu/api/v3";
+    
+      var options = {
+      url: urlRoot + '/repos/' + owner + "/"+repo+"/contents/dockerfile11",
+      method: 'PUT',
+      headers: {
+        //"User-Agent": "EnableIssues",
+        //"content-type": "application/json",
+        "Authorization": token
+      },
+      json: {
+      "message" : "docker file created by DockrRockr",
+      "content" : new Buffer(fs.readFileSync(path, 'utf8')).toString('base64')
+      }
+    };
+
+    request(options, function (error, response, body) {
+      //var obj = JSON.parse(body);
+      if(!error){
+      console.log(body);
+      console.log(fs.readFileSync(path, 'utf8').toString('base64'));
+      if(cb){
+        cb();
+        }
+      }
+    });
+      }
+
+    
 
     createDockerFile(json, cb) {
       //Create Dockerfile from template and replace with user credentials
@@ -133,8 +169,12 @@ class Bot {
              else
                 {
                   self.fileUpload(`DockerFile`, json.channel, function(err,res) {
-                  self.send('file uploaded',json.channel);
+                    self.send('file uploaded', json.channel);
+                    self.pushToGit(`DockerFile`, json.gitUName,json.repo, function(err,res) {
+                      self.send('File Pushed To Git', json.channel);
+                  });
                 });
+                  
               }
             });
           });
@@ -144,7 +184,18 @@ class Bot {
           }
         }); 
     }
+    deployImage(cb)
+    {
+      var url = "http://amazonaws.com/mock-url";
+      setTimeout(function(){ cb(url);}, 10000);
+    }
+    createImage(cb)
+    {
+      
+      setTimeout(function(){ cb();},5000);
+    }
 }
+
 
 // Export the Bot class, which will be imported when 'require' is 
 // used
