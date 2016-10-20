@@ -33,7 +33,7 @@ class Serve {
         obj = req.body;
         console.log("Form data");
         console.log(obj.uid);
-        client.set(obj.uid,`{${obj.app},${obj.maintainer},${obj.repo},${obj.token}, ${obj.framework}, ${obj.db}, ${obj.port}`);
+        client.set(obj.uid,`{${obj.app},${obj.maintainer},${obj.repo},${obj.token}, ${obj.framework}, ${obj.db}, ${obj.port}}`);
       //TODO: replace this by mock json file
         var jsondata = {
           app: 'DockerTest',
