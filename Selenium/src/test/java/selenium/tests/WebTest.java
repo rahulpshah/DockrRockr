@@ -84,7 +84,7 @@ public class WebTest
 		
 		List<WebElement> allIds = driver.findElements(By.xpath("//span[@class='message_body']/../.."));
 		
-		allIds.stream().forEach(id -> System.out.println(id.getAttribute("id")));
+		//allIds.stream().forEach(id -> System.out.println(id.getAttribute("id")));
 		
 		assertTrue(true);
 		
