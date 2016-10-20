@@ -53,7 +53,7 @@ Ask the user whether he wants to deploy the latest docker image, if yes, deploy 
 2 Main Flow
    User will request deployment of the lastest docker image [S1]. Bot deploys image and posts link [S2].
 3 Subflows
-  [S1] User writes command 'docker'.
+  [S1] User writes command 'deploy'.
   [S2] Bot will return link. 
   The message looks like: "Your app has been deployed at http://amazonaws.com/mock-url"
 ```
