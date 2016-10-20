@@ -2,6 +2,7 @@ package selenium.tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +25,7 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 public class WebTest
 {
 	private static WebDriver driver;
+	private static WebDriverWait wait;
 	
 	@BeforeClass
 	public static void setUp() throws Exception 
@@ -31,22 +33,11 @@ public class WebTest
 		//driver = new HtmlUnitDriver();
 		ChromeDriverManager.getInstance().setup();
 		driver = new ChromeDriver();
-	}
-	
-	@AfterClass
-	public static void  tearDown() throws Exception
-	{
-		driver.close();
-		driver.quit();
-	}
-	
-	@Test
-	public void postMessage()
-	{
+		
 		driver.get("https://dockrrockr.slack.com/");
-
+		
 		// Wait until page loads and we can see a sign in button.
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("signin_btn")));
 
 		// Find email and password fields.
@@ -54,7 +45,7 @@ public class WebTest
 		WebElement pw = driver.findElement(By.id("password"));
 
 		// Type in our test user login info.
-		email.sendKeys("testuser@ncsu.edu");
+		email.sendKeys("test@ncsu.edu");
 		pw.sendKeys("****");
 
 		// Click
@@ -66,7 +57,20 @@ public class WebTest
 
 		driver.get("https://dockrrockr.slack.com/messages/testing");
 		wait.until(ExpectedConditions.titleContains("testing"));
+	}
+	
+	@AfterClass
+	public static void  tearDown() throws Exception
+	{
+		driver.close();
+		driver.quit();
+	}
+	
+	@Test
+	public void checkHelloConversation()
+	{
 		
+		//Testing for request response below:
 		WebElement messageBot = driver.findElement(By.id("message-input"));
 		messageBot.sendKeys("hello");
 		messageBot.sendKeys(Keys.RETURN);
@@ -77,16 +81,76 @@ public class WebTest
 				By.xpath("//span[@class='message_body' and text() = 'hello']/../.."));
 
 		
-		String idHello = getIDHello.getAttribute("id");		
-		char lastIndex = idHello.charAt(idHello.length()-1);
-		int nextIndex = Character.getNumericValue(lastIndex) + 1;	
-		String idHelloResponse = idHello.substring(0, idHello.length()-1) + nextIndex;
+		String idHello = getIDHello.getAttribute("id").split("_")[2];	
+	    int index = Integer.valueOf(idHello);
 		
-		List<WebElement> allIds = driver.findElements(By.xpath("//span[@class='message_body']/../.."));
+		wait.withTimeout(10, TimeUnit.SECONDS).ignoring(StaleElementReferenceException.class);
 		
-		//allIds.stream().forEach(id -> System.out.println(id.getAttribute("id")));
+	    WebElement getIDHelloResponseContent = driver.findElement(
+				By.xpath("//ts-message[contains(@id,'"+(index+1)+"')]/div/span[@class='message_body']"));
+	    
+	    WebElement getIDHelloResponseContentName = driver.findElement(
+				By.xpath("//ts-message[contains(@id,'"+(index+1)+"')]/div/span[@class='message_body']/span[@class='mention']"));
 		
-		assertTrue(true);
+		
+		assertEquals(getIDHelloResponseContent.getText(), "Hi, "+getIDHelloResponseContentName.getText()+"! What can I do for you today?");
+		
+	}
+	
+	@Test
+	public void checkCreateDockerConversation()
+	{
+		
+		//Testing for request response below:
+		WebElement messageBot = driver.findElement(By.id("message-input"));
+		messageBot.sendKeys("Create a Docker");
+		messageBot.sendKeys(Keys.RETURN);
+		
+		wait.withTimeout(3, TimeUnit.SECONDS).ignoring(StaleElementReferenceException.class);
+		
+		WebElement getIDHello = driver.findElement(
+				By.xpath("//span[@class='message_body' and text() = 'Create a Docker']/../.."));
+
+		
+	    String idHello = getIDHello.getAttribute("id").split("_")[2];	
+	    int index = Integer.valueOf(idHello);
+	        
+	    wait.withTimeout(10, TimeUnit.SECONDS).ignoring(StaleElementReferenceException.class);
+		
+		WebElement getIDHelloResponseContent = driver.findElement(
+				By.xpath("//ts-message[contains(@id,'"+(index+1)+"')]/div/span[@class='message_body']"));
+			
+		//System.out.println(getIDHelloResponseContent.getText().split("\\r?\\n")[0]);
+		assertEquals(getIDHelloResponseContent.getText().split("\\r?\\n")[0], ("Please fill this form to create a dockerfile"));
+		assertEquals(getIDHelloResponseContent.getText().split("\\r?\\n")[1], ("http://localhost:8081/"));
+		
+	}
+	
+	@Test
+	public void checkCreateDeployConversation()
+	{
+		
+		//Testing for request response below:
+		WebElement messageBot = driver.findElement(By.id("message-input"));
+		messageBot.sendKeys("deploy");
+		messageBot.sendKeys(Keys.RETURN);
+		
+	    wait.withTimeout(10, TimeUnit.SECONDS).ignoring(StaleElementReferenceException.class);
+		
+		WebElement getIDHello = driver.findElement(
+				By.xpath("//span[@class='message_body' and text() = 'deploy']/../.."));
+		
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.MINUTES);
+		
+		String idHello = getIDHello.getAttribute("id").split("_")[2];	
+	    int index = Integer.valueOf(idHello);
+	    
+		WebElement getIDHelloResponseContent = driver.findElement(
+				By.xpath("//ts-message[contains(@id,'"+(index+1)+"')]/div/span[@class='message_body']"));
+		
+		
+		//System.out.println(getIDHelloResponseContent.getText());
+		assertEquals(getIDHelloResponseContent.getText().split("\\r?\\n")[0], "Your app has been deployed at http://amazonaws.com/mock-url");
 		
 	}
 

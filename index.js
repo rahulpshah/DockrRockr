@@ -27,9 +27,17 @@ bot.respondTo('hello', (message, channel, user) => {
 
 
 //HTML message
-bot.respondTo('Create a Docker', (path, channel, user) => 
-{
-    bot.send('Please fill this form to create a dockerfile\n http://localhost:8081/', channel);
+bot.respondTo('Create a Docker', (path, channel, user) => {
+    bot.send('Please fill this form to create a dockerfile\n http://localhost:8081#uid='+user.id, channel);
+  }, true);
+
+//Message to uploadFile
+bot.respondTo('Show File', (path, channel, user) => {
+	bot.createDockerFile(jsondata, (err) => {
+		bot.fileUpload(`DockerFile`, channel, function(err,res) {
+	  	bot.send('file uploaded',channel);
+	  })
+	})
 
 }, true);
 
@@ -58,11 +66,17 @@ bot.respondTo('store', (message, channel, user) => {
 
 
 bot.respondTo('deploy', (message, channel, user) => {
-  bot.deployImage(function(data){
-      bot.send("Your app has been deployed at " + data, channel);
+  client.get(user.name, (err, reply) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+     bot.deployImage(function(data){
+     bot.send("Your app has been deployed at " + data, channel);
   });
-
+  });
 });
+
 //Retrieve from Redis
 bot.respondTo('retrieve', (message, channel, user) => {
   client.get(user.name, (err, reply) => {
@@ -79,6 +93,3 @@ bot.respondTo('retrieve', (message, channel, user) => {
 function getArgs(msg) {
   return msg.split(' ').slice(1);
 }
-
-
-

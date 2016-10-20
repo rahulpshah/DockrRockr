@@ -3,54 +3,244 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" />
 <script type="text/javascript">
 </script>
+<script type="text/javascript" src="jquery.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 <html>
 <head>
     <title>This is docker fill in page</title>
+    <style type="text/css">
+.form-style-7{
+    max-width:400px;
+    margin:5px auto;
+    background:#fff;
+    border-radius:2px;
+    padding:5px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+.form-style-7 h1{
+    display: block;
+    text-align: center;
+    padding: 0;
+    margin: 0px 0px 20px 0px;
+    color: #5C5C5C;
+    font-size:x-large;
+}
+.form-style-7 ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+.form-style-7 li{
+    display: block;
+    padding: 9px;
+    border:1px solid #DDDDDD;
+    margin-bottom: 32.9px;
+    border-radius: 3px;
+    width: 390px;
+}
+
+.form-style-7 li:last-child{
+    border:none;
+    margin-bottom: 0px;
+    text-align: center;
+}
+.form-style-7 li > label{
+    display: block;
+    float: left;
+    margin-top: -19px;
+    background: #FFFFFF;
+    padding: 2px 5px 2px 5px;
+    color: #B9B9B9;
+    font-size: 14px;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.form-style-7 input[type="text"],
+.form-style-7 input[type="date"],
+.form-style-7 input[type="datetime"],
+.form-style-7 input[type="email"],
+.form-style-7 input[type="number"],
+.form-style-7 input[type="search"],
+.form-style-7 input[type="time"],
+.form-style-7 input[type="url"],
+.form-style-7 input[type="password"],
+.form-style-7 textarea,
+.form-style-7 select
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    display: block;
+    outline: none;
+    border: none;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    padding: 0;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+.form-style-7 input[type="text"]:focus,
+.form-style-7 input[type="date"]:focus,
+.form-style-7 input[type="datetime"]:focus,
+.form-style-7 input[type="email"]:focus,
+.form-style-7 input[type="number"]:focus,
+.form-style-7 input[type="search"]:focus,
+.form-style-7 input[type="time"]:focus,
+.form-style-7 input[type="url"]:focus,
+.form-style-7 input[type="password"]:focus,
+.form-style-7 textarea:focus,
+.form-style-7 select:focus
+{
+}
+.form-style-7 li > span{
+    background: #F3F3F3;
+    display: block;
+    padding: 3px;
+    margin: 0 -9px -9px -9px;
+    text-align: center;
+    color: #C0C0C0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+.form-style-7 textarea{
+    resize:none;
+}
+.form-style-7 input[type="submit"],
+.form-style-7 input[type="button"]{
+    background: #2471FF;
+    border: none;
+    width: 390px;
+    padding: 10px 20px 10px 20px;
+    border-bottom: 3px solid #5994FF;
+    border-radius: 3px;
+    color: #D2E2FF;
+}
+.form-style-7 input[type="submit"]:hover,
+.form-style-7 input[type="button"]:hover{
+    background: #6B9FFF;
+    color:#fff;
+}
+</style>
 </head>
-<body>
-    <div class="container">
-        <form action="/" method="post">
-        <div class="row">
+<body style="background-color:#F5F8FA">
+    <div>
+        <form action="/" onsubmit="return validateForm()" method="post" class="form-style-7">
+    <ul>
+      <li style="display:none">
+              <label for="uid" >User ID</label>
+              <input type="text" name="uid" id="uid" required>
+              <span>Enter your Slack user id here</span>
+      </li>
+
+      <li style="display:none">
+          <label for="maintainer" placeholder="z">Maintainer Name</label>
+          <input type="text" name="maintainer" id="maintainer" value="Awesome maintainer" required>
+          <span>Enter the name of your app's maintainer here</span>
+      </li>
+
+      <li>
             <label for="app" >Name of the app</label>
-            <input type="text" name="app">
-        </div>
+            <input type="text" name="app" placeholder="DockrRockr App" required>
+            <span>Enter the name of your app here</span>
+        </li>
 
-        <div class="row">
-            <label for="maintainer" placeholder="z">Maintainer Name</label>
-            <input type="text" name="maintainer" id="maintainer">
-        </div>
 
-        <div class="row">
-            <label for="repo" placeholder="z">Github Repository</label>
-            <input type="text" name="repo">
-        </div>
+        <li>
+            <label for="gitUsername" placeholder="z">Github Username</label>
+            <input type="text" name="gitUsername" id="gitUsername" placeholder="octocat" required>
+            <span>Enter your github.com username here</span>
+        </li>
+        <li>
+            <label for="repo" placeholder="z">Github Repository Name</label>
+            <input type="text" name="repo" placeholder="SecretRepo" required>
+            <span>Enter the name of your Github repository here</span>
+        </li>
 
-        <div class="row">
-            <label for="token" placeholder="z">Github Token</label>
-            <input type="text" name="token">
-        </div>
-        
-        <div class="row">
+        <li>
+            <label for="gitToken" placeholder="z">Github Token</label>
+            <input type="text" name="gitToken" placeholder="B5yVfvXYwaK7cbHy" required>
+            <span>Enter the name of your Github authentication token here</span>
+        </li>
+        <li>
+            <label for="awsToken" placeholder="z">AWS Token</label>
+            <input type="text" name="awsToken" placeholder="XTH7RAY5wPbRD23j" required>
+            <span>Enter the name of your AWS authentication token here</span>
+        </li>
+        <li>
+            <label for="dhToken" placeholder="z">DockerHub Token</label>
+            <input type="text" name="dhToken" placeholder="pQGe83JYHZSvv9nV" required>
+            <span>Enter the name of your DockerHub authentication token here</span>
+        </li>
+
+        <li>
             <label for="framework">Framework</label>
-            <select name="framework">
+            <select name="framework" required>
                 <option>Ruby On Rails</option>
                 <option>Django</option>
             </select>
-        </div>
-        <div class="row">
+            <span>Select your app framework here</span>
+
+        </li>
+        <li>
             <label for="db">Database</label>
-            <select name="db">
+            <select name="db" required>
                 <option>Postgres</option>
                 <option>MYSQL</option>
             </select>
-        </div>
+            <span> Select your app database here</span
+        </li>
 
-        <div class="row">
+        <li>
             <label for="port">Port</label>
-            <input type="text" name="port">
-        </div>
-        <button>Submit</button>
-        </form>
+            <input type="text" name="port" placeholder="9092" required>
+            <span>Enter the port number of your app here</span>
+        </li>
+        <input type="submit" value="Submit" />
+    </ul>
+  </form>
+    <script type="text/javascript">
+    var hashParams = window.location.hash.substr(1);
+    var p = hashParams.split('=');
+    document.getElementById("uid").value = decodeURIComponent(p[1]);
+
+    function validateForm() {
+        var x = document.forms["myForm"]["fname"].value;
+        if (x == null || x == "") {
+            alert("Name must be filled out");
+            return false;
+        }
+    }
+    (function ($) {
+    $.fn.serializeFormJSON = function () {
+
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+})(jQuery);
+
+$('form').submit(function (e) {
+    e.preventDefault();
+    var data = $(this).serializeFormJSON();
+    //console.log(data);
+});
+function adjust_textarea(h) {
+    h.style.height = "20px";
+    h.style.height = (h.scrollHeight)+"px";
+}
+
+</script>
     </div>
 </body>
 </html>
