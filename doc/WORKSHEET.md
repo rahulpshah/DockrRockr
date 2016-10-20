@@ -1,30 +1,67 @@
 ### Task Tracking
 
-Building software is a complex process and you will have a big team of people. The only way you will make it through this process is by careful planning and delegation of work.
+### Milestone: BOT
 
-You will report the progress of each week (iteration). To track this, you will submit a completed iteration worksheet at the end of the iteration (include in WORKSHEET.md). This will describe the tasks completed for your use cases.
+##### Week 1 - 10/6/2016 - 10/13/2016
 
-An example sheet follows:
-
-##### Week 1
+| Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
+| ------------- | ------------- | ------------  |  ------------
+| Task 1    | Finalize Architectural Desgin |   Complete       | #1
+| | |     |
+| Task 2| Setup Slack Bot | Complete    | #2
+| Subflow 1| |     |
+| | |     |
+| Task 3| Understand GitHub API |     | &nbsp;
 
 | Deliverable   | Item/Status   |  Issues/Tasks
 | ------------- | ------------  |  ------------
-| Use Case      | Get Meeting Availability          | &nbsp;
+| Use Case  2    | Get Meeting Availability          | &nbsp;
 | Subflow      | 1             |  #33, #38, #78
 | Subflow      | 2             |  [Pivotal Task](https://www.pivotaltracker.com/story/show/114636091)
 | Subflow      | 3             |  [Trello Card](https://trello.com/c/diA1DaMw)
 | Subflow      | &nbsp;        | &nbsp;
 | Selenium Tests| Incomplete    | Get Meeting Availability, error1,...
 
-* Github issues in a markdown referred to as `#33` will automatically turn into links when in same repo.
-* You can link to trello cards by click on share inside a card to get a link.
-* You can link to pivotal stories by clicking on the first button left of ID in detail view.
-* You reuse the markdown of the above table for your worksheet.
+| Deliverable   | Item/Status   |  Issues/Tasks
+| ------------- | ------------  |  ------------
+| Use Case  3    | Get Meeting Availability          | &nbsp;
+| Subflow      | 1             |  #33, #38, #78
+| Subflow      | 2             |  [Pivotal Task](https://www.pivotaltracker.com/story/show/114636091)
+| Subflow      | 3             |  [Trello Card](https://trello.com/c/diA1DaMw)
+| Subflow      | &nbsp;        | &nbsp;
+| Selenium Tests| Incomplete    | Get Meeting Availability, error1,...
+
+##### Week 2 - 10/14/2016 - 10/20/2016
+
+| Deliverable   | Item/Status   |  Issues/Tasks
+| ------------- | ------------  |  ------------
+| Use Case 1     | Get Meeting Availability          | &nbsp;
+| Subflow      | 1             |  #33, #38, #78
+| Subflow      | 2             |  [Pivotal Task](https://www.pivotaltracker.com/story/show/114636091)
+| Subflow      | 3             |  [Trello Card](https://trello.com/c/diA1DaMw)
+| Subflow      | &nbsp;        | &nbsp;
+| Selenium Tests| Incomplete    | Get Meeting Availability, error1,...
+
+| Deliverable   | Item/Status   |  Issues/Tasks
+| ------------- | ------------  |  ------------
+| Use Case 1     | Get Meeting Availability          | &nbsp;
+| Subflow      | 1             |  #33, #38, #78
+| Subflow      | 2             |  [Pivotal Task](https://www.pivotaltracker.com/story/show/114636091)
+| Subflow      | 3             |  [Trello Card](https://trello.com/c/diA1DaMw)
+| Subflow      | &nbsp;        | &nbsp;
+| Selenium Tests| Incomplete    | Get Meeting Availability, error1,...
+
+| Deliverable   | Item/Status   |  Issues/Tasks
+| ------------- | ------------  |  ------------
+| Use Case 1     | Get Meeting Availability          | &nbsp;
+| Subflow      | 1             |  #33, #38, #78
+| Subflow      | 2             |  [Pivotal Task](https://www.pivotaltracker.com/story/show/114636091)
+| Subflow      | 3             |  [Trello Card](https://trello.com/c/diA1DaMw)
+| Subflow      | &nbsp;        | &nbsp;
+| Selenium Tests| Incomplete    | Get Meeting Availability, error1,...
+
 
 #### Stories and Tasks
-
-Advice: You should practice agile by breaking use cases down into smaller stories and tasks and plan how to test, implement, and deliver those changes each week. Because you need to deliver a use case almost every week, you might consider having tasks that separately handle different layers of system. You will find this is a common situation in an agile team. Some suggested breakdowns include:
 
 * Design
 * Reports, scrum master, planning
@@ -35,5 +72,3 @@ Advice: You should practice agile by breaking use cases down into smaller storie
 * Slack intergration
 * Message conversation
 * Service connections 
-
-Finally, you may find the [SMART](https://www.mindtools.com/pages/article/smart-goals.htm) method a good way plan tasks.
