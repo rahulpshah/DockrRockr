@@ -18,13 +18,7 @@ const bot = new Bot({
 });
 
 const server = new Serve();
-var jsondata = { app: 'DockerTest',
-                      maintainer: 'Krunal Gala',
-                      repo: 'github.com/krunal3103',
-                      token: 'sahjhdajknjdshj',
-                      framework: 'Ruby On Rails',
-                      db: 'Postgres',
-                      port: '801' }
+
 
 //Hello Message
 bot.respondTo('hello', (message, channel, user) => {
@@ -44,7 +38,9 @@ bot.respondTo('Show File', (path, channel, user) => {
 	  	bot.send('file uploaded',channel);
 	  })
 	})
+
 }, true);
+
 
 //Redis connection
 client.on('error', (err) => {
@@ -68,9 +64,15 @@ bot.respondTo('store', (message, channel, user) => {
   });
 }, true);
 
+
+bot.respondTo('deploy', (message, channel, user) => {
+  bot.deployImage(function(data){
+      bot.send("Your app has been deployed at " + data, channel);
+  });
+
+});
 //Retrieve from Redis
 bot.respondTo('retrieve', (message, channel, user) => {
-  console.log(user.name)
   client.get(user.name, (err, reply) => {
 	  if (err) {
 	    console.log(err);

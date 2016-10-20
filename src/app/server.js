@@ -8,8 +8,12 @@ const redis = require('redis');
 const client = redis.createClient();
 var bodyParser = require('body-parser');
 //TODO: replace filename to Bot
-var bot = require("../../bot.js")
-console.log(bot);
+var Bot = require("../../bot.js");
+const bot = new Bot({
+  token: process.env.SLACK_TOKEN,
+  autoReconnect: true,
+  autoMark: true
+});
 class Serve {
 
   constructor() {
@@ -30,7 +34,18 @@ class Serve {
         console.log("Form data");
         console.log(obj.uid);
         client.set(obj.uid,`{${obj.app},${obj.maintainer},${obj.repo},${obj.token}, ${obj.framework}, ${obj.db}, ${obj.port}`);
-
+      //TODO: replace this by mock json file
+        var jsondata = {
+          app: 'DockerTest',
+          maintainer: 'Rahul Shah',
+          repo: 'github.com/rahulpshah',
+          token: 'sahjhdajknjdshj',
+          framework: 'Ruby On Rails',
+          db: 'Postgres',
+          port: '801' ,
+          channel: bot.slack.dataStore.getChannelByName("general")
+        }
+        bot.createDockerFile(jsondata);
         res.end("Your request for new docker file is being processed. Bot will respond with the file soon.")
     });
     var server = app.listen(8081, function(){
