@@ -1,9 +1,8 @@
 ## Bot
 
-Bot Name: DockrRockr
+#### Bot Name: DockrRockr
 
-Team Members: 
-
+Team Members: <br/>
 Krunal Gala - kgala <br/>
 Jigar Sharda - jsharda<br/>
 Shrey Sanghavi - ssangha<br/>
@@ -73,6 +72,7 @@ In implementing your bot, you will have to primary tasks:
 
 ### Selenium Testing
 
+[Selenium Testing Module](https://github.ncsu.edu/jsharda/DockrRockr/tree/master/Selenium)
 
 ### Task Tracking
 
