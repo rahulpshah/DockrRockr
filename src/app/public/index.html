@@ -3,43 +3,49 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" />
 <script type="text/javascript">
 </script>
+<script type="text/javascript" src="jquery.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 <html>
 <head>
     <title>This is docker fill in page</title>
 </head>
 <body>
     <div class="container">
-        <form action="/" method="post">
+        <form action="/" onsubmit="return validateForm()" method="post">
+          <div style="display:none" class="row">
+              <label for="uid" >User ID</label>
+              <input type="text" name="uid" id="uid" required>
+          </div>
         <div class="row">
             <label for="app" >Name of the app</label>
-            <input type="text" name="app">
+            <input type="text" name="app" required>
         </div>
 
         <div class="row">
             <label for="maintainer" placeholder="z">Maintainer Name</label>
-            <input type="text" name="maintainer" id="maintainer">
+            <input type="text" name="maintainer" id="maintainer" required>
         </div>
 
         <div class="row">
             <label for="repo" placeholder="z">Github Repository</label>
-            <input type="text" name="repo">
+            <input type="text" name="repo" required>
         </div>
 
         <div class="row">
             <label for="token" placeholder="z">Github Token</label>
-            <input type="text" name="token">
+            <input type="text" name="token" required>
         </div>
-        
+
         <div class="row">
             <label for="framework">Framework</label>
-            <select name="framework">
+            <select name="framework" required>
                 <option>Ruby On Rails</option>
                 <option>Django</option>
             </select>
         </div>
         <div class="row">
             <label for="db">Database</label>
-            <select name="db">
+            <select name="db" required>
                 <option>Postgres</option>
                 <option>MYSQL</option>
             </select>
@@ -47,10 +53,49 @@
 
         <div class="row">
             <label for="port">Port</label>
-            <input type="text" name="port">
+            <input type="text" name="port" required>
         </div>
-        <button>Submit</button>
-        </form>
+        <input type="submit" value="Submit" />
+    </form>
+    <script type="text/javascript">
+    var hashParams = window.location.hash.substr(1);
+    var p = hashParams.split('=');
+    document.getElementById("uid").value = decodeURIComponent(p[1]);
+
+    function validateForm() {
+        var x = document.forms["myForm"]["fname"].value;
+        if (x == null || x == "") {
+            alert("Name must be filled out");
+            return false;
+        }
+    }
+    (function ($) {
+    $.fn.serializeFormJSON = function () {
+
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+})(jQuery);
+
+$('form').submit(function (e) {
+    e.preventDefault();
+    var data = $(this).serializeFormJSON();
+    //console.log(data);
+});
+
+
+</script>
     </div>
 </body>
 </html>
