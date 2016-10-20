@@ -20,9 +20,6 @@ Samrudhi Sharma - ssharm17
 Once the user pushes new ode to the Git repository, it will trigger the creation of the image on DockerHub.
 The user  receives a notification on Slack once the image is ready.
 
-3. Deploy the Docker Image on AWS.
-
-
 ```
 Use Case 1 : Creating the Dockerfile + ChatOps
 1 Preconditions
@@ -62,7 +59,8 @@ Ask the user whether he wants to deploy the latest docker image, if yes, deploy 
    User will request deployment of the lastest docker image [S1]. Bot deploys image and posts link [S2].
 3 Subflows
   [S1] User writes command 'docker'.
-  [S2] Bot will return link. The message looks like: "Your app has been deployed at http://amazonaws.com/mock-url"
+  [S2] Bot will return link. 
+  The message looks like: "Your app has been deployed at http://amazonaws.com/mock-url"
 ```
 
 ### Mocking Service Component
