@@ -4,15 +4,11 @@ Bot Name: DockrRockr
 
 Team Members: 
 
-Krunal Gala - kgala
-
-Jigar Sharda - jsharda
-
-Shrey Sanghavi - ssangha
-
-Rahul Shah - rshah5
-
-Samrudhi Sharma - ssharm17
+Krunal Gala - kgala <br/>
+Jigar Sharda - jsharda<br/>
+Shrey Sanghavi - ssangha<br/>
+Rahul Shah - rshah5<br/>
+Samrudhi Sharma - ssharm17<br/>
 
 ### Use Cases
 
@@ -79,6 +75,8 @@ In implementing your bot, you will have to primary tasks:
 
 
 ### Task Tracking
+
+[Time Tracking Worksheet](WORKSHEET.md)
 
 ### Screencast
 
