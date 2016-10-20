@@ -2,7 +2,7 @@
 
 ### Milestone: BOT
 
-##### Week 1 
+### Week 1 
 
 | Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
 | ------------- | ------------- | ------------  |  ------------
@@ -24,12 +24,10 @@
 | Selenium Tests| N/A | &nbsp;  |  &nbsp;
 | | |     |
 | | |     |
-| Use Case  2    | Get Meeting Availability        |  | &nbsp;
-| Subflow      | 1          |   |  #33, #38, #78
-| Subflow      | 2           |  |  [Pivotal Task](https://www.pivotaltracker.com/story/show/114636091)
-| Subflow      | 3           |  |  [Trello Card](https://trello.com/c/diA1DaMw)
-| Subflow      | &nbsp;      |  | &nbsp;
-| Selenium Tests| Incomplete  |  | Get Meeting Availability, error1,...
+| Use Case  2    |  Notifying the user when the Docker image is ready     |  | &nbsp;
+| Subflow      | 1  Learn about GitHub Hooks       |   |  #33, #38, #78
+| Subflow      | 2  Learn about DockerHub Hooks        |  |  
+| Selenium Tests| N/A  |&nbsp;| &nbsp;
 | | |     |
 | | |     |
 | Use Case  3    | Get Meeting Availability        |  | &nbsp;
@@ -41,7 +39,7 @@
 | | |     |
 | | |     |
 
-##### Week 2 
+### Week 2 
 
 | Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
 | ------------- | ------------- | ------------  |  ------------
