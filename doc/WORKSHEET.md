@@ -4,8 +4,6 @@
 
 ##### Week 1 - 10/6/2016 - 10/13/2016
 
-| | |     |
-| | |     |
 | Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
 | ------------- | ------------- | ------------  |  ------------
 | Task 1    | Finalize Architectural Desgin |   Complete       | [#1](/../../issues/1)
@@ -45,8 +43,6 @@
 
 ##### Week 2 - 10/14/2016 - 10/20/2016
 
-| | |     |
-| | |     |
 | Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
 | ------------- | ------------- | ------------  |  ------------
 | Task 1    | Finalize Architectural Desgin |   Complete       | [#1](/../../issues/1)
