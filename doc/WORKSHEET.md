@@ -2,7 +2,7 @@
 
 ### Milestone: BOT
 
-##### Week 1 - 10/6/2016 - 10/13/2016
+##### Week 1 
 
 | Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
 | ------------- | ------------- | ------------  |  ------------
@@ -13,15 +13,15 @@
 | Subflow 1| |     |
 | | |     |
 | | |     |
-| Task 3| Understand GitHub API |     | &nbsp;
+| Task 3| Understand GitHub API |  Complete   | &nbsp;
 | | |     |
 | | |     |
-| Use Case  1    | Get Meeting Availability        |  | &nbsp;
-| Subflow      | 1            | |  #33, #38, #78
-| Subflow      | 2             |  [Pivotal Task](https://www.pivotaltracker.com/story/show/114636091)
-| Subflow      | 3           |  |  [Trello Card](https://trello.com/c/diA1DaMw)
-| Subflow      | &nbsp;       | | &nbsp;
-| Selenium Tests| Incomplete  |  | Get Meeting Availability, error1,...
+| Use Case  1    | Creating the Dockerfile + ChatOps       |   &nbsp;| &nbsp;
+| Subflow      | 1  Finalize Database Schema       | Complete|  #33, #38, #78
+| Subflow      | 2  Create Redis Database         | Complete |   &nbsp;
+| Subflow      | 3  Setup Server.js         |  Complete|  
+| Subflow      | 4  Decide Initial commands     | Complete| 
+| Selenium Tests| N/A | &nbsp;  |  &nbsp;
 | | |     |
 | | |     |
 | Use Case  2    | Get Meeting Availability        |  | &nbsp;
@@ -41,7 +41,7 @@
 | | |     |
 | | |     |
 
-##### Week 2 - 10/14/2016 - 10/20/2016
+##### Week 2 
 
 | Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
 | ------------- | ------------- | ------------  |  ------------
