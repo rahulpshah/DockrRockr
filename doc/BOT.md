@@ -33,13 +33,10 @@ Use Case 1 : Creating the Dockerfile + ChatOps
 ```
 Use Case 2 : Notifying the user when the Docker image is ready
 1 Preconditions
-   User must have google calendar api tokens in system.
+   Docker file is in user's repo, new code pushed by user.
 2 Main Flow
-   User will request meeting and provide list of attendees [S1]. Bot will provide  possible meeting times and user confirms [S2]. Bot creates meeting and posts link [S3].
-3 Subflows
-  [S1] User provides /meeting command with @username,@username list.
-  [S2] Bot will return list of meeting times. User will confirm time.
-  [S3] Bot will create meeting and post link to google calendar event.
+  User push some code, docker image is uploaded on DockerHub[S1].
+  Using a webhook slack bot gets repsonse, notifies the user[S2]
 ```
 ```
 Use Case 3 : Deploy the Docker Image on AWS.
