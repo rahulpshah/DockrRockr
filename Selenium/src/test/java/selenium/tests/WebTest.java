@@ -123,7 +123,6 @@ public class WebTest
 		assertNotEquals(getIDHelloResponseContent.getText(), "Hi! What can I do for you today?");
 	}
 	
-	
 	@Test
 	public void checkHelloConversationSadPath()
 	{
