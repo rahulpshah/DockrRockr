@@ -83,3 +83,6 @@ In implementing your bot, you will have to primary tasks:
 Create a screencast of your bot performing your three use cases.
 Demonstrate your selenium tests being executed.
 
+### Extra Credit
+
+
