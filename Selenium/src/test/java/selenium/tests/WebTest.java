@@ -1,7 +1,8 @@
 package selenium.tests;
 
-import static org.junit.Assert.*;
+import  static org.junit.Assert.*;
 
+import com.saucelabs.common.Utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -19,21 +20,35 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+
+import java.net.URL;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 public class WebTest
 {
-	private static WebDriver driver;
-	private static WebDriverWait wait;
+	private  static WebDriver driver;
+	private  static WebDriverWait wait;
 	
 	@BeforeClass
-	public static void setUp() throws Exception 
+	public  static void setUp() throws Exception 
 	{
 		//driver = new HtmlUnitDriver();
-		ChromeDriverManager.getInstance().setup();
-		driver = new ChromeDriver();
+		//ChromeDriverManager.getInstance().setup();
+		//driver = new ChromeDriver();
 		
+		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        capabilities.setCapability("version", Utils.readPropertyOrEnv("SELENIUM_VERSION", "4"));
+        capabilities.setCapability("platform", Utils.readPropertyOrEnv("SELENIUM_PLATFORM", "Windows 7"));
+        capabilities.setCapability("version","52.0");
+        //capabilities.setCapability("browserName", Utils.readPropertyOrEnv("SELENIUM_BROWSER", "firefox"));
+        String username = Utils.readPropertyOrEnv("SAUCE_USER_NAME", "jsharda");
+        String accessKey = Utils.readPropertyOrEnv("SAUCE_API_KEY", "32edb0ab-b3ec-4866-8677-1bdbc0d89f41");
+        driver = new RemoteWebDriver(new URL("http://" + username + ":" + accessKey + "@ondemand.saucelabs.com:80/wd/hub"),
+                capabilities);
+
 		driver.get("https://dockrrockr.slack.com/");
 		
 		// Wait until page loads and we can see a sign in button.
@@ -60,7 +75,7 @@ public class WebTest
 	}
 	
 	@AfterClass
-	public static void  tearDown() throws Exception
+	public  static void  tearDown() throws Exception
 	{
 		driver.close();
 		driver.quit();
