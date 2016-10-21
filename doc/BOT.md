@@ -79,5 +79,6 @@ In implementing your bot, you will have to primary tasks:
 
 
 ### Extra Credit
+![travis_build](https://media.github.ncsu.edu/user/4148/files/fd76a934-9729-11e6-83c0-2fc7935c526c)
 [Sauce Labs](https://github.ncsu.edu/jsharda/DockrRockr/tree/saucelabs)
 
