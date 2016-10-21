@@ -46,8 +46,8 @@
 | | |     |
 | | |     |
 | Use Case  2    |  Notifying the user when the Docker image is ready     |  | &nbsp;
-| Subflow      | 1  Learn about GitHub Hooks       |  Complete |  #33, #38, #78
-| Subflow      | 2  Learn about DockerHub Hooks        | Complete |  
+| Subflow      | 1  Learn about GitHub Hooks       |  Complete |  N/A
+| Subflow      | 2  Learn about DockerHub Hooks        | Complete |  N/A
 | Selenium Tests| N/A  | Complete | &nbsp;
 | | |     |
 | | |     |
