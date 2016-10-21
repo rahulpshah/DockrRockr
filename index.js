@@ -23,10 +23,29 @@ const server = new Serve();
 //Hello Message
 bot.respondTo('hello', (message, channel, user) => {
   bot.send(`Hi, ${user.name}! What can I do for you today?`, channel)
-  bot.send('You can start by asking me to \`create a docker file.\`', channel)
+  bot.send('You can start by asking me to \`create a docker\` file', channel)
 }, true);
 
+//Hello Message
+bot.respondTo('', (message, channel, user) => {
+  if(message.text.toLowerCase() != "hello" && message.text.toLowerCase() != "create a docker" && message.text.toLowerCase()!= "yes deploy" && message.text.toLowerCase()!= "commands"){
+  console.log(message.text.toLowerCase());
+  bot.send('I donot understand this. Try `commands` ', channel)
+}
+}, true);
 
+bot.respondTo('commands', (message, channel, user) => {
+
+  client.get(user.name, (err, reply) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    //console.log(JSON.stringify(message) +"MESSAGE")
+    bot.send("I respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
+  });
+
+});
 //HTML message
 bot.respondTo('Create a Docker', (path, channel, user) => {
     bot.send('Please fill this form to create a dockerfile\n http://localhost:8081#uid='+user.id, channel);
@@ -55,7 +74,7 @@ bot.respondTo('store', (message, channel, user) => {
 }, true);
 
 
-bot.respondTo('deploy', (message, channel, user) => {
+bot.respondTo('yes deploy', (message, channel, user) => {
   client.get(user.name, (err, reply) => {
     if (err) {
       console.log(err);
