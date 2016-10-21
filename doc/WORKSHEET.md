@@ -37,12 +37,12 @@
 | Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
 | ------------- | ------------- | ------------  |  ------------
 | Use Case  1    | Creating the Dockerfile + ChatOps       |   &nbsp;| &nbsp;
-| Subflow      | 1  Setup relevant conversation to call bot.      | Complete|  #33, #38, #78
-| Subflow      | 2  Create HTML form to be filled in by user.       | Complete |   &nbsp;
-| Subflow      | 3  CSS and Validation for Bot        |  Complete|  
-| Subflow      | 4  Populate DockerFile     | Complete| 
-| Subflow      | 5  Upload to Redis   | Complete| 
-| Selenium Tests| Happy Path, Sad Path | Complete  |  &nbsp;
+| Subflow      | 1  Setup relevant conversation to call bot.      | Complete|  [#13](/../../issues/13)
+| Subflow      | 2  Create HTML form to be filled in by user.       | Complete |   [#3](/../../issues/3)
+| Subflow      | 3  CSS and Validation for Bot        |  Complete|   [#11](/../../issues/11)
+| Subflow      | 4  Populate DockerFile     | Complete| [#5](/../../issues/5)
+| Subflow      | 5  Upload to Redis   | Complete| [#4](/../../issues/4)
+| Selenium Tests| Happy Path, Sad Path | Complete  | [#8](/../../issues/8)
 | | |     |
 | | |     |
 | Use Case  2    |  Notifying the user when the Docker image is ready     |  | &nbsp;
@@ -54,6 +54,6 @@
 | Use Case  3    | Deploy the Docker Image on AWS.      |  | &nbsp;
 | Subflow      | 1  Setup relevant conversation to call bot.      | Complete|  #33, #38, #78
 | Subflow      | 2  Mock the interaction with AWS      | Complete|  #33, #38, #78
-| Selenium Tests| Happy Path, Sad Path | Complete| N/A 
+| Selenium Tests| Happy Path, Sad Path | Complete| [#10](/../../issues/10)
 | | |     |
 | | |     |
