@@ -78,8 +78,8 @@ In implementing your bot, you will have to primary tasks:
 
 ### Screencast
 
-Create a screencast of your bot performing your three use cases.
-Demonstrate your selenium tests being executed.
+[![Screencast](https://i1.ytimg.com/vi/AJkJPcYPFfs/default.jpg)](https://youtu.be/AJkJPcYPFfs)
+
 
 ### Extra Credit
 [Sauce Labs](https://github.ncsu.edu/jsharda/DockrRockr/tree/saucelabs)
