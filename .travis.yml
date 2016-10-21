@@ -6,10 +6,6 @@ node_js:
   - oraclejdk8
   - oraclejdk7
 
-env:
-  global:
-    - secure: "32edb0ab-b3ec-4866-8677-1bdbc0d89f41"
-
 install:
   - npm install
 
