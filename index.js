@@ -23,6 +23,7 @@ const server = new Serve();
 //Hello Message
 bot.respondTo('hello', (message, channel, user) => {
   bot.send(`Hi, ${user.name}! What can I do for you today?`, channel)
+  bot.send('You can start by asking me to \`create a docker file.\`', channel)
 }, true);
 
 
@@ -30,17 +31,6 @@ bot.respondTo('hello', (message, channel, user) => {
 bot.respondTo('Create a Docker', (path, channel, user) => {
     bot.send('Please fill this form to create a dockerfile\n http://localhost:8081#uid='+user.id, channel);
   }, true);
-
-//Message to uploadFile
-bot.respondTo('Show File', (path, channel, user) => {
-	bot.createDockerFile(jsondata, (err) => {
-		bot.fileUpload(`DockerFile`, channel, function(err,res) {
-	  	bot.send('file uploaded',channel);
-	  })
-	})
-
-}, true);
-
 
 //Redis connection
 client.on('error', (err) => {
@@ -75,7 +65,7 @@ bot.respondTo('deploy', (message, channel, user) => {
      bot.send("Your app has been deployed at " + data, channel);
   });
   });
-});
+}, true);
 
 //Retrieve from Redis
 bot.respondTo('retrieve', (message, channel, user) => {
