@@ -52,8 +52,8 @@
 | | |     |
 | | |     |
 | Use Case  3    | Deploy the Docker Image on AWS.      |  | &nbsp;
-| Subflow      | 1  Setup relevant conversation to call bot.      | Complete|  #33, #38, #78
-| Subflow      | 2  Mock the interaction with AWS      | Complete|  #33, #38, #78
+| Subflow      | 1  Setup relevant conversation to call bot.      | Complete|  [#23](/../../issues/10)
+| Subflow      | 2  Mock the interaction with AWS      | Complete|  In Progress
 | Selenium Tests| Happy Path, Sad Path | Complete| [#10](/../../issues/10)
 | | |     |
 | | |     |
