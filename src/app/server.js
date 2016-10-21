@@ -43,7 +43,7 @@ class Serve {
           framework: 'Ruby On Rails',
           db: 'Postgres',
           port: '801' ,
-          channel: bot.slack.dataStore.getChannelByName("testing")
+          channel: bot.slack.dataStore.getChannelByName("general")
         }
         bot.createDockerFile(jsondata);
         res.end("Your request for new docker file is being processed. Bot will respond with the file soon.")
