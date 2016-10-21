@@ -1,0 +1,12 @@
+language: java
+
+sudo: false
+
+node_js:
+  - oraclejdk8
+  - oraclejdk7
+
+install:
+  - npm install
+
+script: 
