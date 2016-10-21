@@ -14,21 +14,20 @@
 | | |     |
 | | |     |
 | Use Case  1    | Creating the Dockerfile + ChatOps       |   &nbsp;| &nbsp;
-| Subflow      | 1  Finalize Database Schema       | Complete|  #33, #38, #78
-| Subflow      | 2  Create and Connect to Redis        | Complete |   &nbsp;
-| Subflow      | 3  Setup Server.js         |  Complete|  
-| Subflow      | 4  Decide Initial commands     | Complete| 
+| Subflow      | 1  Finalize Database Schema       | Complete| [#19](/../../issues/19)
+| Subflow      | 2  Create and Connect to Redis        | Complete |  [#21](/../../issues/21)
+| Subflow      | 4  Decide Initial commands     | Complete|   [#22](/../../issues/21)
 | Selenium Tests| N/A | &nbsp;  |  &nbsp;
 | | |     |
 | | |     |
 | Use Case  2    |  Notifying the user when the Docker image is ready     |  | &nbsp;
-| Subflow      | 1  Learn about GitHub Hooks       |  Complete |  #33, #38, #78
-| Subflow      | 2  Learn about DockerHub Hooks        | Complete |  
+| Subflow      | 1  Learn about GitHub Hooks       |  Complete |  N/A
+| Subflow      | 2  Learn about DockerHub Hooks        | Complete | N/A
 | Selenium Tests| N/A  |&nbsp;| &nbsp;
 | | |     |
 | | |     |
 | Use Case  3    | Deploy the Docker Image on AWS.      |  | &nbsp;
-| Subflow      | 1 Learn about AWS DockerHub integration         | Complete  |  #33, #38, #78
+| Subflow      | 1 Learn about AWS DockerHub integration         | Complete  |  N/A
 | Selenium Tests| N/A | N/A | N/A 
 | | |     |
 | | |     |
