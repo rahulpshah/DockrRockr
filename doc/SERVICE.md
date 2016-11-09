@@ -1,0 +1,5 @@
+* Use Case #1 Implementation (20%)
+* Use Case #2 Implementation (20%)
+* Use Case #3 Implementation (20%)
+* Task Tracking -- WORKSHEET.md (20%)
+* Screencast (20%)
