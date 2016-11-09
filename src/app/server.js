@@ -24,6 +24,19 @@ class Serve {
         extended: true
         }));
 
+    app.get('/build', function(req, res){
+      var query = querystring.parse(url.parse(req.url).query || "");
+      var status = query.status;
+      console.log(status);
+      if(status == "pass")
+      {
+        bot.send("Docker Build Passed", bot.slack.dataStore.getChannelByName("testing"));
+      }
+      else
+      {
+        bot.send("Docker Build Failed", bot.slack.dataStore.getChannelByName("testing"));
+      }
+    });
     app.get('/',function(req,res) {
       res.render('index.html');
     });

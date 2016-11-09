@@ -8,6 +8,9 @@ var request = require('request');
 var Regex = require('regex');
 var FSlack = require('node-slack-upload');
 var fs = require('fs-extra');
+var http = require('http');
+var Client = require('ssh2').Client;
+var conn = new Client();
 class Bot {
     constructor(opts) {
         let slackToken = opts.token;
@@ -228,14 +231,39 @@ class Bot {
             }
         });
     }
-    deployImage
-        (cb) {
+    deployImage(cb) {
             var url = "http://amazonaws.com/mock-url";
             setTimeout(function() { cb(url); }, 5000);
         }
     createImage(cb) {
-        setTimeout(function() { cb(); }, 5000);
+        var remote_server = 'ec2-35-160-249-120.us-west-2.compute.amazonaws.com';
+        var username = 'rshah';
+        var password = 'Pass4Rahul!';
+        conn.on('ready', function() 
+        {
+          console.log('Client :: ready');
+          conn.exec('sh script.sh &', function(err, stream) {
+            if (err) throw err;
+            stream.on('close', function(code, signal) {
+                console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);      
+                conn.end();
+                conn.destroy();
 
+            }).on('data', function(data) {
+              console.log('STDOUT: ' + data);
+              conn.end();
+              conn.destroy();
+            }).stderr.on('data', function(data) {
+              console.log('STDERR: ' + data);
+            });
+          });
+        }).connect({
+          host: remote_server,
+          port: 22,
+          username: username, 
+          password: password
+        });
+        self.send("Your Docker Image is being created. I will ping you when its done");
     }
 }
 
