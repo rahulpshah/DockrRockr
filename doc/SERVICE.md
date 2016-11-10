@@ -12,6 +12,9 @@ Samrudhi Sharma - ssharm17<br/>
 * Use Case #2 Implementation (20%)
 * Use Case #3 Implementation (20%)
 
+Assumptions:<br/>
+One repo for each ip address of a team. 
+
 ### Task Tracking
 
 [Time Tracking Worksheet](WORKSHEET.md)
