@@ -60,4 +60,16 @@
 
 ### Week 3
 
+| Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
+| ------------- | ------------- | ------------  |  ------------
+| Task 1    | Finalize Architectural Desgin |   Complete       | [#1](/../../issues/1)
+| | |     |
+| | |     |
+
 ### Week 4
+
+| Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
+| ------------- | ------------- | ------------  |  ------------
+| Task 1    | Finalize Architectural Desgin |   Complete       | [#1](/../../issues/1)
+| | |     |
+| | |     |
