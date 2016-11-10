@@ -165,7 +165,7 @@ class Bot {
                 "active": true,
                 "events": ["push"],
                 "config": {
-                    "url": "https://35.160.249.120:8081/gitHook",
+                    "url": "35.160.249.120:8081/gitHook",
                     "content_type": "json"
                 }
             }
