@@ -44,20 +44,20 @@ class Serve {
     app.post('/', function(req, res){
         var obj = {}
         obj = req.body;
-        console.log("Form data");
-        console.log(obj.uid);
         console.log(obj.gitUsername.concat('/',obj.repo));
 
         var key = obj.gitUsername.concat('/',obj.repo);
 
         client.exists(key, function(err, reply) {
-        if (reply === 1) {
-        console.log('exists');
-        res.end('Docker file exists for this repo already.');
-        } else {
-        console.log('doesn\'t exist');
-        client.set(obj.gitUsername.concat('/',obj.repo),`{${obj.app},${obj.gitUsername},${obj.repo},${obj.gitToken},${obj.awsToken},${obj.awsIP},${obj.awsUsername},${obj.awsPassword}, ${obj.framework}, ${obj.db}, ${obj.port}}`);
+          if (reply === 1) {
+            res.end('Docker file alredy exists for repo '+key);
+          } else {
+            console.log('doesn\'t exist');
+            //client.set(obj.gitUsername.concat('/',obj.repo),`{${obj.app},${obj.gitUsername},${obj.repo},${obj.gitToken},${obj.awsToken},${obj.awsIP},${obj.awsUsername},${obj.awsPassword}, ${obj.framework}, ${obj.db}, ${obj.port}}`);
         
+            client.rpush([key,obj.gitUsername,obj.repo,obj.gitToken,obj.awsIP,obj.awsUsername,obj.awsPassword,obj.framework, obj.db, obj.port],function(err,reply){
+                console.log('pushed to redis');
+            });
     
       //TODO: replace this by mock json file - FIXED 11/9
         var jsondata = {
@@ -66,7 +66,6 @@ class Serve {
           gitUsername: obj.gitUsername,
           repo: obj.repo,
           gitToken: obj.gitToken,
-          awsToken: obj.awsToken,
           awsIP: obj.awsIP,
           awsUsername: obj.awsUsername,
           awsPassword: obj.awsPassword,
@@ -84,6 +83,28 @@ class Serve {
         }
         }); // checking if client
 
+    });
+
+    app.post('/gitHook',function(req,res){
+      var obj = req.body;
+      var repoName = obj.repository.full_name;
+
+      client.exists(repoName, function(err, reply) {
+        if (reply === 1) {
+          client.lrange(key,0,-1,function(err,reply){
+              var awsUsername = reply[4];
+              var awspswd = reply[5];
+              var awsIP = reply[3];
+              console.log(awsUsername);
+              console.log(repoName);
+
+              ///// Call createImage here with relevant parameters
+            });
+        
+        } else {
+          res.end('No docker file found');
+        }
+    });
     });
     var server = app.listen(8081, function(){
             var host = 'localhost';
