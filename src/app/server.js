@@ -95,10 +95,13 @@ class Serve {
               var awsUsername = reply[4];
               var awspswd = reply[5];
               var awsIP = reply[3];
+              var owner = reply[0];
+              var repo = reply[1];
               console.log(awsUsername);
               console.log(repoName);
 
               ///// Call createImage here with relevant parameters
+              bot.createImage(awsIP, awsUsername, awspswd, owner, repo);
             });
         
         } else {

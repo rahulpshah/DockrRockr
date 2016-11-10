@@ -217,7 +217,6 @@ class Bot {
                                      self.send('Git Hook Created', json.channel);
                                 });
                             });
-                            self.createImageTest("ec2-35-160-249-120.us-west-2.compute.amazonaws.com", "kgala", "Pass4Krunal!", "awslabs", "ecs-demo-php-simple-app");
                         });
                     }
                 });
@@ -227,10 +226,7 @@ class Bot {
             }
         });
     }
-    deployImage(cb) {
-            var url = "http://amazonaws.com/mock-url";
-            setTimeout(function() { cb(url); }, 5000);
-        }
+    
     /*createImage(cb) {
 	    var self = this;
         var remote_server = 'ec2-35-160-249-120.us-west-2.compute.amazonaws.com';
@@ -263,11 +259,7 @@ class Bot {
         self.send("Your Docker Image is being created. I will ping you when its done", this.slack.dataStore.getChannelByName("testing"));
     }*/
 
-    createImageTest(hostname, v_username, v_password, v_owner, v_repoName, cb) { 
-        /*var host = "ec2-35-160-249-120.us-west-2.compute.amazonaws.com";
-        var gitRepo = "awslabs/ecs-demo-php-simple-app";
-        var username = "kgala";
-        var password = "Pass4Krunal!";*/
+    createImage(hostname, v_username, v_password, v_owner, v_repoName, cb) { 
         var gitRepo = v_owner + "/" + v_repoName;
         var host = {
             server:        {     
@@ -285,11 +277,39 @@ class Bot {
         //Use a callback function to process the full session text 
         callback = function(sessionText){
             console.log(sessionText);
+            bot.send("Docker image is ready. Do you want to deploy it?", bot.slack.dataStore.getChannelByName("testing"));
+            bot.respondTo("Yes", function()
+            {
+                var SSH2Shell = require ('ssh2shell'),
+                //Create a new instance passing in the host object 
+                var host = {
+                    server:        {     
+                        host:         hostname,
+                        userName:     v_username,
+                        password:     v_password,
+                    },
+                    passwordPrompt: v_password,
+                    commands: ["docker run -p 80:80 "+v_repoName]
+                };
+                SSH1 = new SSH2Shell(host),
+
+                //Use a callback function to process the full session text 
+                callback1 = function(sessionText){
+                    console.log(sessionText);
+                }
+
+                //Start the process 
+                SSH1.connect(callback1);
+   
+            });
+
         }
 
         //Start the process 
         SSH.connect(callback);
     }
+
+    
 }
 
 
