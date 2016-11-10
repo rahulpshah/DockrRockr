@@ -113,7 +113,10 @@ class Bot {
     pushToGit(path,owner, repo,token1, cb) {
         var token = "token ".concat(token1);
         
-        var urlRoot = "https://github.ncsu.edu/api/v3";
+        var url =  "https://api.github.com";
+
+        //For NCSU thing
+        //var urlRoot = "https://github.ncsu.edu/api/v3";
 
         var options = {
             url: urlRoot + '/repos/' + owner + "/" + repo + "/contents/DockerFile",
@@ -150,7 +153,10 @@ class Bot {
     createGitHook(owner, repo, token1,cb) {
         var token = "token ".concat(token1);
 
-        var urlRoot = "https://github.ncsu.edu/api/v3";
+        var url =  "https://api.github.com";
+
+        //For NCSU thing
+        //var urlRoot = "https://github.ncsu.edu/api/v3";
 
         var options = {
             url: urlRoot + '/repos/' + owner + "/" + repo + "/hooks",
