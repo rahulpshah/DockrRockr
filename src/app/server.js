@@ -46,11 +46,22 @@ class Serve {
         obj = req.body;
         console.log("Form data");
         console.log(obj.uid);
-        client.set(obj.uid,`{${obj.maintainer},${obj.app},${obj.gitUsername},${obj.repo},${obj.gitToken},${obj.awsToken},${obj.awsIP},${obj.awsUsername},${obj.awsPassword},${obj.dhToken}, ${obj.framework}, ${obj.db}, ${obj.port}}`);
+        console.log(obj.gitUsername.concat('/',obj.repo));
 
+        var key = obj.gitUsername.concat('/',obj.repo);
+
+        client.exists(key, function(err, reply) {
+        if (reply === 1) {
+        console.log('exists');
+        res.end('Docker file exists for this repo already.');
+        } else {
+        console.log('doesn\'t exist');
+        client.set(obj.gitUsername.concat('/',obj.repo),`{${obj.app},${obj.gitUsername},${obj.repo},${obj.gitToken},${obj.awsToken},${obj.awsIP},${obj.awsUsername},${obj.awsPassword}, ${obj.framework}, ${obj.db}, ${obj.port}}`);
+        
+    
       //TODO: replace this by mock json file - FIXED 11/9
         var jsondata = {
-          maintainer: obj.maintainer,
+          //maintainer: obj.maintainer,
           app: obj.app,
           gitUsername: obj.gitUsername,
           repo: obj.repo,
@@ -59,7 +70,7 @@ class Serve {
           awsIP: obj.awsIP,
           awsUsername: obj.awsUsername,
           awsPassword: obj.awsPassword,
-          dhtoken: obj.dhToken,
+          //dhtoken: obj.dhToken,
           framework: obj.framework,
           db: obj.db,
           port: obj.port ,
@@ -69,6 +80,10 @@ class Serve {
         // console.log(jsondata);
         bot.createDockerFile(jsondata);
         res.end("Your request for new docker file is being processed. Bot will respond with the file soon.")
+
+        }
+        }); // checking if client
+
     });
     var server = app.listen(8081, function(){
             var host = 'localhost';
