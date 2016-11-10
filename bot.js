@@ -110,15 +110,13 @@ class Bot {
         });
     }
 
-    pushToGit(path, owner, repo, cb) {
-        var token = "token lololol";
-        var owner = 'jsharda';
-        var repo = 'dummy';
-
+    pushToGit(path,owner, repo,token1, cb) {
+        var token = "token ".concat(token1);
+        
         var urlRoot = "https://github.ncsu.edu/api/v3";
 
         var options = {
-            url: urlRoot + '/repos/' + owner + "/" + repo + "/contents/dockerfile11",
+            url: urlRoot + '/repos/' + owner + "/" + repo + "/contents/DockerFile",
             method: 'PUT',
             headers: {
                 //"User-Agent": "EnableIssues",
@@ -134,12 +132,14 @@ class Bot {
         request(options, function(error, response, body) {
             //var obj = JSON.parse(body);
             if (!error) {
-                //console.log(body);
+                console.log(response.statusCode);
                 //console.log(fs.readFileSync(path, 'utf8').toString('base64'));
-                var regex = new Regex("^2*");
-
-                if (regex.test(response.statusCode)) {
+                
+                
+                if (response.statusCode.toString().startsWith("2")) {
+                    console.log("regex passed");
                     if (cb) {
+                        console.log("cb called");
                         cb();
                     }
                 }
@@ -147,10 +147,8 @@ class Bot {
         });
     }
 
-    createGitHook(owner, repo, cb) {
-        var token = "token lolol";
-        var owner = 'jsharda';
-        var repo = 'dummy';
+    createGitHook(owner, repo, token1,cb) {
+        var token = "token ".concat(token1);
 
         var urlRoot = "https://github.ncsu.edu/api/v3";
 
@@ -167,7 +165,7 @@ class Bot {
                 "active": true,
                 "events": ["push"],
                 "config": {
-                    "url": "https://hooks.slack.com/services/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",
+                    "url": "35.160.249.120:8081/gitHook",
                     "content_type": "json"
                 }
             }
@@ -177,8 +175,6 @@ class Bot {
             //var obj = JSON.parse(body);
             if (!error) {
 
-                //console.log(body);
-                console.log(response);
                 if (cb) {
                     cb();
                 }
@@ -210,19 +206,16 @@ class Bot {
                     } else {
                         self.fileUpload(`DockerFile`, json.channel, function(err, res) {
                             self.send('File uploaded', json.channel);
-                            self.createGitHook(json.gitUName, json.repo, function(err, res) {
-                                //self.send('Git Hook Created', json.channel);
-                            });
-                            self.pushToGit(`DockerFile`, json.gitUName, json.repo, function(err, res) {
+                            self.pushToGit(`DockerFile`, json.gitUsername, json.repo,json.gitToken, function(err, res) {
                                 self.send('File Pushed on your Git Repository!', json.channel);
-
+                                self.createGitHook(json.gitUsername, json.repo, json.gitToken,function(err, res) {
+                                     self.send('Git Hook Created', json.channel);
+                                });
                             });
                             self.createImageTest(function() {
                                 self.send("Your DockerImage is ready.", json.channel);
                                 self.send("Do you want to deploy your image to AWS?.", json.channel);
-                            });
                         });
-
                     }
                 });
             });

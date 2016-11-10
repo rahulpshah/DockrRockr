@@ -17,8 +17,17 @@
     "node-slack-upload": "^1.1.1",
     "path": "^0.12.7",
     "redis": "^2.6.2",
-    "regex": "0.1",
+    "regex": "^0.1.1",
     "request": "^2.75.0",
-    "ssh2": "^0.5.4"
+    "regex": "0.1",
+    "ssh2" : "^0.5.4"
+  },
+  "directories": {
+    "doc": "doc"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.ncsu.edu/jsharda/DockrRockr.git"
   }
 }
