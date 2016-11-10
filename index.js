@@ -2,6 +2,7 @@
 var fs = require('fs');
 const redis = require('redis');
 const client = redis.createClient();
+var Botkit = require('botkit');
 
 //Import bot
 let Bot = require('./bot.js');
@@ -18,39 +19,57 @@ const bot = new Bot({
 });
 
 const server = new Serve();
-
+var controller = Botkit.slackbot({
+  debug: false
+  //include "log: false" to disable logging
+  //or a "logLevel" integer from 0 to 7 to adjust logging verbosity
+});
 
 //Hello Message
-bot.respondTo('hello', (message, channel, user) => {
+bot.respondTo('<@u2pr6rru3> hello', (message, channel, user) => {
+  if(user.name != "dockr_rockr" && message.text.toLowerCase().indexOf("<@u2pr6rru3>")>=0){
   bot.send(`Hi, ${user.name}! What can I do for you today?`, channel)
   bot.send('You can start by asking me to \`create a docker\` file', channel)
+  console.log("hello called");
+  console.log(message.text);
+}
 }, true);
 
-//New Message
-// bot.respondTo('', (message, channel, user) => {
-//   if(message.text.toLowerCase() != "hello" && message.text.toLowerCase() != "create a docker" && message.text.toLowerCase()!= "yes deploy" && message.text.toLowerCase()!= "commands"){
-//  console.log(message.text.toLowerCase());
-//  bot.send('I donot understand this. Try `commands` ', channel)
-// }
-// }, true);
+// New Message
+
+bot.respondTo('', (message, channel, user) => {
+  if(user.name != "dockr_rockr" && message.text.toLowerCase().indexOf("<@u2pr6rru3>")>=0){
+  if(message.text.toLowerCase() != "<@u2pr6rru3> hello" && message.text.toLowerCase() != "<@u2pr6rru3> create a docker" && message.text.toLowerCase()!= "<@u2pr6rru3> yes deploy" && message.text.toLowerCase()!= "<@u2pr6rru3> commands"){
+ console.log(message.text.toLowerCase());
+ console.log(user.name);
+ bot.send('I donot understand this. Try `commands` ', channel)
+}}
+}, true);
+
 //TODO fix this function
 
-bot.respondTo('commands', (message, channel, user) => {
-
+bot.respondTo('<@u2pr6rru3> commands', (message, channel, user) => {
+  if(user.name != "dockr_rockr" && message.text.toLowerCase().indexOf("<@u2pr6rru3>")>=0){
   client.get(user.name, (err, reply) => {
     if (err) {
       console.log(err);
       return;
     }
+    console.log("commands cqalled");
+    console.log(message.text);
     //console.log(JSON.stringify(message) +"MESSAGE")
     bot.send("I respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
-  });
 
+  });
+}
 });
 //HTML message
-bot.respondTo('Create a Docker', (path, channel, user) => {
+bot.respondTo('<@u2pr6rru3> Create a Docker', (path, channel, user) => {
+  if(user.name != "dockr_rockr" && message.text.toLowerCase().indexOf("<@u2pr6rru3>")>=0){
     bot.send('Please fill this form to create a dockerfile\n http://localhost:8081#uid='+user.id, channel);
-  }, true);
+    console.log("create a docker called");
+    console.log(message.text);
+  }}, true);
 
 //Redis connection
 client.on('error', (err) => {
@@ -62,7 +81,7 @@ client.on('connect', () => {
 });
 
 //Storing in Redis
-bot.respondTo('store', (message, channel, user) => {
+bot.respondTo('<@u2pr6rru3> store', (message, channel, user) => {
   let msg = getArgs(message.text);
   console.log(msg);
   client.set(user.name, msg, (err) => {
@@ -75,7 +94,7 @@ bot.respondTo('store', (message, channel, user) => {
 }, true);
 
 
-bot.respondTo('yes deploy', (message, channel, user) => {
+bot.respondTo('<@u2pr6rru3> yes deploy', (message, channel, user) => {
   client.get(user.name, (err, reply) => {
     if (err) {
       console.log(err);
@@ -83,12 +102,14 @@ bot.respondTo('yes deploy', (message, channel, user) => {
     }
      bot.deployImage(function(data){
      bot.send("Your app has been deployed at " + data, channel);
+     console.log("dep called");
+     console.log(message.text);
   });
   });
 }, true);
 
 //Retrieve from Redis
-bot.respondTo('retrieve', (message, channel, user) => {
+bot.respondTo('<@u2pr6rru3> retrieve', (message, channel, user) => {
   client.get(user.name, (err, reply) => {
 	  if (err) {
 	    console.log(err);
