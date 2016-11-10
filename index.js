@@ -26,6 +26,7 @@ bot.respondTo('hello', (message, channel, user) => {
   bot.send('You can start by asking me to \`create a docker\` file', channel)
 }, true);
 
+
 //Hello Message
 /*bot.respondTo('', (message, channel, user) => {
   if(message.text.toLowerCase() != "hello" && message.text.toLowerCase() != "create a docker" && message.text.toLowerCase()!= "yes deploy" && message.text.toLowerCase()!= "commands"){
@@ -34,6 +35,16 @@ bot.respondTo('hello', (message, channel, user) => {
 }
 }, true);
 */
+
+//New Message
+// bot.respondTo('', (message, channel, user) => {
+//   if(message.text.toLowerCase() != "hello" && message.text.toLowerCase() != "create a docker" && message.text.toLowerCase()!= "yes deploy" && message.text.toLowerCase()!= "commands"){
+//  console.log(message.text.toLowerCase());
+//  bot.send('I donot understand this. Try `commands` ', channel)
+// }
+// }, true);
+//TODO fix this function
+
 bot.respondTo('commands', (message, channel, user) => {
 
   client.get(user.name, (err, reply) => {
