@@ -17,10 +17,10 @@
     "node-slack-upload": "^1.1.1",
     "path": "^0.12.7",
     "redis": "^2.6.2",
-    "regex": "^0.1.1",
-    "request": "^2.75.0",
     "regex": "0.1",
-    "ssh2" : "^0.5.4"
+    "request": "^2.75.0",
+    "ssh2": "^0.5.4",
+    "ssh2shell": "^1.6.3"
   },
   "directories": {
     "doc": "doc"

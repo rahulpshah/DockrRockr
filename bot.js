@@ -217,11 +217,7 @@ class Bot {
                                      self.send('Git Hook Created', json.channel);
                                 });
                             });
-                            // self.createImageTest(function() 
-                            // {
-                            //     self.send("Your DockerImage is ready.", json.channel);
-                            //     self.send("Do you want to deploy your image to AWS?.", json.channel);
-                            // });
+                            self.createImageTest("ec2-35-160-249-120.us-west-2.compute.amazonaws.com", "kgala", "Pass4Krunal!", "awslabs", "ecs-demo-php-simple-app");
                         });
                     }
                 });
@@ -267,15 +263,20 @@ class Bot {
         self.send("Your Docker Image is being created. I will ping you when its done", this.slack.dataStore.getChannelByName("testing"));
     }*/
 
-    createImageTest(cb) {
+    createImageTest(hostname, v_username, v_password, v_owner, v_repoName, cb) { 
+        /*var host = "ec2-35-160-249-120.us-west-2.compute.amazonaws.com";
+        var gitRepo = "awslabs/ecs-demo-php-simple-app";
+        var username = "kgala";
+        var password = "Pass4Krunal!";*/
+        var gitRepo = v_owner + "/" + v_repoName;
         var host = {
             server:        {     
-                host:         "ec2-35-160-249-120.us-west-2.compute.amazonaws.com",
-                userName:     "kgala",
-                password:     "Pass4Krunal!",
+                host:         hostname,
+                userName:     v_username,
+                password:     v_password,
             },
-            passwordPrompt: "Pass4Krunal!",
-            commands:      [ "echo $(pwd)", "sudo su", "Pass4Krunal!", "service docker start", "git clone https://github.com/awslabs/ecs-demo-php-simple-app", "cd ecs-demo-php-simple-app", "docker info", "docker build -t test ."]
+            passwordPrompt: v_password,
+            commands: [ "echo $(pwd)", "sudo su", v_password, "service docker start", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "docker info", "docker build -t "+v_repoName+" ."]
         };
 
         var SSH2Shell = require ('ssh2shell'),
@@ -283,7 +284,7 @@ class Bot {
         SSH = new SSH2Shell(host),
         //Use a callback function to process the full session text 
         callback = function(sessionText){
-            console.log(sessionText)
+            console.log(sessionText);
         }
 
         //Start the process 
