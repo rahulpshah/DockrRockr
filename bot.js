@@ -217,7 +217,7 @@ class Bot {
                                 self.send('File Pushed on your Git Repository!', json.channel);
 
                             });
-                            self.createImage(function() {
+                            self.createImageTest(function() {
                                 self.send("Your DockerImage is ready.", json.channel);
                                 self.send("Do you want to deploy your image to AWS?.", json.channel);
                             });
@@ -235,11 +235,11 @@ class Bot {
             var url = "http://amazonaws.com/mock-url";
             setTimeout(function() { cb(url); }, 5000);
         }
-    createImage(cb) {
-	var self = this;
+    /*createImage(cb) {
+	    var self = this;
         var remote_server = 'ec2-35-160-249-120.us-west-2.compute.amazonaws.com';
-        var username = 'rshah';
-        var password = 'Pass4Rahul!';
+        var username = 'kgala';
+        var password = 'Pass4Krunal!';
         conn.on('ready', function() 
         {
           console.log('Client :: ready');
@@ -265,6 +265,29 @@ class Bot {
           password: password
         });
         self.send("Your Docker Image is being created. I will ping you when its done", this.slack.dataStore.getChannelByName("testing"));
+    }*/
+
+    createImageTest(cb) {
+        var host = {
+            server:        {     
+                host:         "ec2-35-160-249-120.us-west-2.compute.amazonaws.com",
+                userName:     "kgala",
+                password:     "Pass4Krunal!",
+            },
+            passwordPrompt: "Pass4Krunal!",
+            commands:      [ "echo $(pwd)", "sudo su", "Pass4Krunal!", "service docker start", "git clone https://github.com/awslabs/ecs-demo-php-simple-app", "cd ecs-demo-php-simple-app", "docker info", "docker build -t test ."]
+        };
+
+        var SSH2Shell = require ('ssh2shell'),
+        //Create a new instance passing in the host object 
+        SSH = new SSH2Shell(host),
+        //Use a callback function to process the full session text 
+        callback = function(sessionText){
+            console.log(sessionText)
+        }
+
+        //Start the process 
+        SSH.connect(callback);
     }
 }
 
