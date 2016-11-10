@@ -91,7 +91,7 @@ class Serve {
 
       client.exists(repoName, function(err, reply) {
         if (reply === 1) {
-          client.lrange(key,0,-1,function(err,reply){
+          client.lrange(repoName,0,-1,function(err,reply){
               var awsUsername = reply[4];
               var awspswd = reply[5];
               var awsIP = reply[3];
