@@ -113,16 +113,14 @@ class Bot {
     pushToGit(path,owner, repo,token1, cb) {
         var token = "token ".concat(token1);
         
-        var urlRoot =  "https://api.github.com";
-
-        //For NCSU thing
-        //var urlRoot = "https://github.ncsu.edu/api/v3";
+       // var urlRoot = "https://github.ncsu.edu/api/v3";
+        var urlRoot = "https://api.github.com";
 
         var options = {
-            url: urlRoot + '/repos/' + owner + "/" + repo + "/contents/DockerFile",
+            url: urlRoot + '/repos/' + owner + "/" + repo + "/contents/Dockerfile",
             method: 'PUT',
             headers: {
-                //"User-Agent": "EnableIssues",
+                "User-Agent": "pushToGit",
                 //"content-type": "application/json",
                 "Authorization": token
             },
@@ -135,6 +133,8 @@ class Bot {
         request(options, function(error, response, body) {
             //var obj = JSON.parse(body);
             if (!error) {
+		console.log("-------------------------------------------------------------------");
+		console.log(response);
                 console.log(response.statusCode);
                 //console.log(fs.readFileSync(path, 'utf8').toString('base64'));
                 
@@ -153,16 +153,13 @@ class Bot {
     createGitHook(owner, repo, token1,cb) {
         var token = "token ".concat(token1);
 
-        var urlRoot =  "https://api.github.com";
-
-        //For NCSU thing
         //var urlRoot = "https://github.ncsu.edu/api/v3";
-
+        var urlRoot = "https://api.github.com";
         var options = {
             url: urlRoot + '/repos/' + owner + "/" + repo + "/hooks",
             method: 'POST',
             headers: {
-                //"User-Agent": "EnableIssues",
+               "User-Agent": "CreateGitHook",
                 "content-type": "json",
                 "Authorization": token
             },
@@ -171,7 +168,7 @@ class Bot {
                 "active": true,
                 "events": ["push"],
                 "config": {
-                    "url": "35.160.249.120:8081/gitHook",
+                    "url": "http://35.160.249.120:8081/gitHook",
                     "content_type": "json"
                 }
             }
@@ -180,7 +177,8 @@ class Bot {
         request(options, function(error, response, body) {
             //var obj = JSON.parse(body);
             if (!error) {
-
+			console.log(response.body.errors);
+			console.log(response.statusCode);
                 if (cb) {
                     cb();
                 }
@@ -192,30 +190,30 @@ class Bot {
 
     createDockerFile(json, cb) {
         //Create Dockerfile from template and replace with user credentials
-        var source = 'Files/DockerFileTemplate';
-        var target = 'DockerFile';
+        var source = 'Files/DockerfileTemplate';
+        var target = 'Dockerfile';
         var self = this;
         fs.copy(source, target, function() {
             var mapObj = { FullName: json.maintainer, Email: "test@ncsu.edu", AppName: json.app };
             var re = new RegExp(Object.keys(mapObj).join("|"), "gi");
-            fs.readFile("DockerFile", 'utf8', function(err, data) {
+            fs.readFile("Dockerfile", 'utf8', function(err, data) {
                 if (err) {
                     return console.log(err);
                 }
                 var result = data.replace(re, function(matched) {
                     return mapObj[matched];
                 });
-                fs.writeFile("DockerFile", result, 'utf8', function(err) {
+                fs.writeFile("Dockerfile", result, 'utf8', function(err) {
                     if (err) 
                     {
                         console.log(err);
                     } 
                     else 
                     {
-                        self.fileUpload(`DockerFile`, json.channel, function(err, res) 
+                        self.fileUpload(`Dockerfile`, json.channel, function(err, res) 
                         {
                             self.send('File uploaded', json.channel);
-                            self.pushToGit(`DockerFile`, json.gitUsername, json.repo,json.gitToken, function(err, res) 
+                            self.pushToGit(`Dockerfile`, json.gitUsername, json.repo,json.gitToken, function(err, res) 
                             {
                                 self.send('File Pushed on your Git Repository!', json.channel);
                                 self.createGitHook(json.gitUsername, json.repo, json.gitToken,function(err, res) 
@@ -266,6 +264,7 @@ class Bot {
     }*/
 
     createImage(hostname, v_username, v_password, v_owner, v_repoName, cb) { 
+        var self = this;
         var gitRepo = v_owner + "/" + v_repoName;
         var host = {
             server:        {     
@@ -274,7 +273,7 @@ class Bot {
                 password:     v_password,
             },
             passwordPrompt: v_password,
-            commands: [ "echo $(pwd)", "sudo su", v_password, "service docker start", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "docker info", "docker build -t "+v_repoName+" ."]
+            commands: [ "echo $(pwd)", "sudo su", v_password,"service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "docker build -t test ."]
         };
 
         var SSH2Shell = require ('ssh2shell'),
@@ -283,8 +282,8 @@ class Bot {
         //Use a callback function to process the full session text 
         callback = function(sessionText){
             console.log(sessionText);
-            bot.send("Docker image is ready. Do you want to deploy it?", bot.slack.dataStore.getChannelByName("testing"));
-            bot.respondTo("Yes", function()
+            self.send("Docker image is ready. Do you want to deploy it?", self.slack.dataStore.getChannelByName("testing"));
+            self.respondTo("Yes", function()
             {
                 SSH2Shell = require ('ssh2shell'),
                 //Create a new instance passing in the host object 
@@ -295,9 +294,9 @@ class Bot {
                         password:     v_password,
                     },
                     passwordPrompt: v_password,
-                    commands: ["docker run -p 80:80 "+v_repoName]
+                    commands: ["docker run -p 80:80 test"]
                 };
-                SSH1 = new SSH2Shell(host),
+                var SSH1 = new SSH2Shell(host),
 
                 //Use a callback function to process the full session text 
                 callback1 = function(sessionText){
