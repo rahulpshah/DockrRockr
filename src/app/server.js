@@ -46,18 +46,27 @@ class Serve {
         obj = req.body;
         console.log("Form data");
         console.log(obj.uid);
-        client.set(obj.uid,`{${obj.app},${obj.maintainer},${obj.repo},${obj.token}, ${obj.framework}, ${obj.db}, ${obj.port}}`);
-      //TODO: replace this by mock json file
+        client.set(obj.uid,`{${obj.maintainer},${obj.app},${obj.gitUsername},${obj.repo},${obj.gitToken},${obj.awsToken},${obj.awsIP},${obj.awsUsername},${obj.awsPassword},${obj.dhToken}, ${obj.framework}, ${obj.db}, ${obj.port}}`);
+
+      //TODO: replace this by mock json file - FIXED 11/9
         var jsondata = {
-          app: 'DockerTest',
-          maintainer: 'Rahul Shah',
-          repo: 'github.com/rahulpshah',
-          token: 'sahjhdajknjdshj',
-          framework: 'Ruby On Rails',
-          db: 'Postgres',
-          port: '801' ,
-          channel: bot.slack.dataStore.getChannelByName("testing")
+          maintainer: obj.maintainer,
+          app: obj.app,
+          gitUsername: obj.gitUsername,
+          repo: obj.repo,
+          gitToken: obj.gitToken,
+          awsToken: obj.awsToken,
+          awsIP: obj.awsIP,
+          awsUsername: obj.awsUsername,
+          awsPassword: obj.awsPassword,
+          dhtoken: obj.dhToken,
+          framework: obj.framework,
+          db: obj.db,
+          port: obj.port ,
+          channel: bot.slack.dataStore.getChannelByName("testing"),
+
         }
+        // console.log(jsondata);
         bot.createDockerFile(jsondata);
         res.end("Your request for new docker file is being processed. Bot will respond with the file soon.")
     });

@@ -27,12 +27,12 @@ bot.respondTo('hello', (message, channel, user) => {
 }, true);
 
 //New Message
-//bot.respondTo('', (message, channel, user) => {
-  //if(message.text.toLowerCase() != "hello" && message.text.toLowerCase() != "create a docker" && message.text.toLowerCase()!= "yes deploy" && message.text.toLowerCase()!= "commands"){
- // console.log(message.text.toLowerCase());
- // bot.send('I donot understand this. Try `commands` ', channel)
-//}
-//}, true);
+// bot.respondTo('', (message, channel, user) => {
+//   if(message.text.toLowerCase() != "hello" && message.text.toLowerCase() != "create a docker" && message.text.toLowerCase()!= "yes deploy" && message.text.toLowerCase()!= "commands"){
+//  console.log(message.text.toLowerCase());
+//  bot.send('I donot understand this. Try `commands` ', channel)
+// }
+// }, true);
 //TODO fix this function
 
 bot.respondTo('commands', (message, channel, user) => {
