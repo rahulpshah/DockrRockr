@@ -286,9 +286,9 @@ class Bot {
             bot.send("Docker image is ready. Do you want to deploy it?", bot.slack.dataStore.getChannelByName("testing"));
             bot.respondTo("Yes", function()
             {
-                var SSH2Shell = require ('ssh2shell'),
+                SSH2Shell = require ('ssh2shell'),
                 //Create a new instance passing in the host object 
-                var host = {
+                host = {
                     server:        {     
                         host:         hostname,
                         userName:     v_username,
