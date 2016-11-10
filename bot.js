@@ -199,22 +199,29 @@ class Bot {
                 var result = data.replace(re, function(matched) {
                     return mapObj[matched];
                 });
-
                 fs.writeFile("DockerFile", result, 'utf8', function(err) {
-                    if (err) {
+                    if (err) 
+                    {
                         console.log(err);
-                    } else {
-                        self.fileUpload(`DockerFile`, json.channel, function(err, res) {
+                    } 
+                    else 
+                    {
+                        self.fileUpload(`DockerFile`, json.channel, function(err, res) 
+                        {
                             self.send('File uploaded', json.channel);
-                            self.pushToGit(`DockerFile`, json.gitUsername, json.repo,json.gitToken, function(err, res) {
+                            self.pushToGit(`DockerFile`, json.gitUsername, json.repo,json.gitToken, function(err, res) 
+                            {
                                 self.send('File Pushed on your Git Repository!', json.channel);
-                                self.createGitHook(json.gitUsername, json.repo, json.gitToken,function(err, res) {
+                                self.createGitHook(json.gitUsername, json.repo, json.gitToken,function(err, res) 
+                                {
                                      self.send('Git Hook Created', json.channel);
                                 });
                             });
-                            self.createImageTest(function() {
-                                self.send("Your DockerImage is ready.", json.channel);
-                                self.send("Do you want to deploy your image to AWS?.", json.channel);
+                            // self.createImageTest(function() 
+                            // {
+                            //     self.send("Your DockerImage is ready.", json.channel);
+                            //     self.send("Do you want to deploy your image to AWS?.", json.channel);
+                            // });
                         });
                     }
                 });
