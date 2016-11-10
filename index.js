@@ -52,14 +52,13 @@ bot.respondTo('commands', (message, channel, user) => {
       console.log(err);
       return;
     }
-    //console.log(JSON.stringify(message) +"MESSAGE")
     bot.send("I respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
   });
 
 });
 //HTML message
 bot.respondTo('Create a Docker', (path, channel, user) => {
-    bot.send('Please fill this form to create a dockerfile\n http://localhost:8081#uid='+user.id, channel);
+    bot.send('Please fill this form to create a dockerfile\n http://35.160.249.120:8081', channel);
   }, true);
 
 //Redis connection
@@ -91,6 +90,7 @@ bot.respondTo('deploy', (message, channel, user) => {
       console.log(err);
       return;
     }
+
      bot.deployImage(function(data){
      bot.send("Your app has been deployed at " + data, channel);
   });
