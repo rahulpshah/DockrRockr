@@ -283,7 +283,7 @@ class Bot {
         callback = function(sessionText){
             console.log(sessionText);
             self.send("Docker image is ready. Do you want to deploy it?", self.slack.dataStore.getChannelByName("testing"));
-            self.respondTo("Yes", function()
+            self.respondTo("Yes deploy", function()
             {
                 SSH2Shell = require ('ssh2shell'),
                 //Create a new instance passing in the host object 
@@ -301,6 +301,7 @@ class Bot {
                 //Use a callback function to process the full session text 
                 callback1 = function(sessionText){
                     console.log(sessionText);
+		   self.send("Your image is deployed here: "+ hostname, self.slack.dataStore.getChannelByName("testing"));
                 }
 
                 //Start the process 
