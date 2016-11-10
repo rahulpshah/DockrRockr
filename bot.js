@@ -236,6 +236,7 @@ class Bot {
             setTimeout(function() { cb(url); }, 5000);
         }
     createImage(cb) {
+	var self = this;
         var remote_server = 'ec2-35-160-249-120.us-west-2.compute.amazonaws.com';
         var username = 'rshah';
         var password = 'Pass4Rahul!';
@@ -263,7 +264,7 @@ class Bot {
           username: username, 
           password: password
         });
-        self.send("Your Docker Image is being created. I will ping you when its done");
+        self.send("Your Docker Image is being created. I will ping you when its done", this.slack.dataStore.getChannelByName("testing"));
     }
 }
 

@@ -115,14 +115,13 @@ public class WebTest
 				By.xpath("//ts-message[contains(@id,'"+(index+1)+"')]/div/span[@class='message_body']/span[@class='mention']"));
 		
 		
-		assertEquals(getIDHelloResponseContent.getText(), "Hi, "+getIDHelloResponseContentName.getText()+"! What can I do for you today?");
+		assertEquals(getIDHelloResponseContent.getText(), "Hi, ssharm17! What can I do for you today?");
 		
 		wait.withTimeout(10, TimeUnit.SECONDS).ignoring(StaleElementReferenceException.class);
 		
 		//Fail Path for Use Case 1:
 		assertNotEquals(getIDHelloResponseContent.getText(), "Hi! What can I do for you today?");
 	}
-	
 	
 	@Test
 	public void checkHelloConversationSadPath()

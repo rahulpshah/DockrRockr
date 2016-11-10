@@ -94,6 +94,7 @@ bot.respondTo('<@u2pr6rru3> store', (message, channel, user) => {
 }, true);
 
 
+<<<<<<< HEAD
 bot.respondTo('<@u2pr6rru3> yes deploy', (message, channel, user) => {
   client.get(user.name, (err, reply) => {
     if (err) {
