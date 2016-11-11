@@ -30,11 +30,11 @@ class Serve {
       console.log(status);
       if(status == "pass")
       {
-        bot.send("Docker Build Passed", bot.slack.dataStore.getChannelByName("testing"));
+        bot.send("Docker Build Passed", bot.slack.dataStore.getChannelByName("general"));
       }
       else
       {
-        bot.send("Docker Build Failed", bot.slack.dataStore.getChannelByName("testing"));
+        bot.send("Docker Build Failed", bot.slack.dataStore.getChannelByName("general"));
       }
     });
     app.get('/',function(req,res) {
@@ -73,7 +73,7 @@ class Serve {
           framework: obj.framework,
           db: obj.db,
           port: obj.port ,
-          channel: bot.slack.dataStore.getChannelByName("testing"),
+          channel: bot.slack.dataStore.getChannelByName("general"),
 
         }
         // console.log(jsondata);
@@ -102,6 +102,7 @@ class Serve {
 
               ///// Call createImage here with relevant parameters
               bot.createImage(awsIP, awsUsername, awspswd, owner, repo);
+		bot.send("Your image is being created. I will ping you when its done. ", bot.slack.dataStore.getChannelByName("general"));
             });
         
         } else {

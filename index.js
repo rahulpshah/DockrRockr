@@ -59,7 +59,7 @@ bot.respondTo('commands', (message, channel, user) => {
 });
 //HTML message
 bot.respondTo('Create a Docker', (path, channel, user) => {
-    bot.send('Please fill this form to create a dockerfile\n http://localhost:8081#uid='+user.id, channel);
+    bot.send('Please fill this form to create a dockerfile\n http://35.160.249.120:8081', channel);
   }, true);
 
 //Redis connection
