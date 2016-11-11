@@ -260,7 +260,7 @@ class Bot {
           username: username, 
           password: password
         });
-        self.send("Your Docker Image is being created. I will ping you when its done", this.slack.dataStore.getChannelByName("testing"));
+        self.send("Your Docker Image is being created. I will ping you when its done", this.slack.dataStore.getChannelByName("general"));
     }*/
 
     createImage(hostname, v_username, v_password, v_owner, v_repoName, cb) { 
@@ -276,7 +276,7 @@ class Bot {
             commands: [ "echo $(pwd)", "sudo su", v_password,"service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "docker build -t test ."],
             callback: function(sessionText){
             console.log(sessionText);
-            self.send("Docker image is ready. Do you want to deploy it?", self.slack.dataStore.getChannelByName("testing"));
+            self.send("Docker image is ready. Do you want to deploy it?", self.slack.dataStore.getChannelByName("general"));
             self.respondTo("Yes deploy", function()
             {
                 SSH2Shell = require ('ssh2shell'),
@@ -291,7 +291,7 @@ class Bot {
                     commands: ["docker run -p 80:80 test"],
 			 callback:     function(sessionText){
                                             console.log(sessionText);
-                                              self.send("Your image is deployed here: http://" + hostname, self.slack.dataStore.getChannelByName("testing"));
+                                              self.send("Your image is deployed here: http://" + hostname, self.slack.dataStore.getChannelByName("general"));
                                         }
                 };
                 var SSH1 = new SSH2Shell(host);
