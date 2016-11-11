@@ -9,8 +9,22 @@ Samrudhi Sharma - ssharm17<br/>
 
 ### Service 
 * Use Case #1 Implementation (20%)
+
+##### Use Case #1 Definition
+
+##### Workflow: <br/> 
+
 * Use Case #2 Implementation (20%)
+
+##### Use Case #2 Definition
+
+##### Workflow:<br/>
+
 * Use Case #3 Implementation (20%)
+
+##### Use Case #3 Definition
+
+##### Workflow:<br/>
 
 Assumptions:<br/>
 One repo for each ip address of a team. 
