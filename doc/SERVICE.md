@@ -47,8 +47,6 @@ Use Case 1 : Creating the Dockerfile + ChatOps
 5. The user enters 'create a docker'. <br/>
 6. The bot responds with "Please fill this form to create a dockerfile, http://localhost:8081/".
 7. There is a form available at http://localhost:8081/, the user fills details there. <br/>
-8. The dockerfile is created and places in the user repository. <br/>
-9. The webhook has been created too. <br/>
 
 ##### Use Case #2 Implementation (20%)
 
@@ -63,11 +61,9 @@ Use Case 2 : Notifying the user when the Docker image is ready
 ```
 
 ##### Workflow as per Screencast:<br/>
-1. <br/>
-2. <br/>
-3. <br/>
-4. <br/>
-5. <br/>
+1. The dockerfile is created and placed in the user repository. <br/>
+2. Notifications are received indicating the file is uploaded, and it is put in the Git Repository. <br/>
+3. Changes made to the repository, from changing the README.md, to deleting the index.php will be reflected. <br/>
 
 ##### Use Case #3 Implementation (20%)
 
