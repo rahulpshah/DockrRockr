@@ -68,4 +68,4 @@
 | Task 4 | AWS implemetation|    Complete | [#26](/../../issues/26)
 | Task 5 | Updates to Server.js code for payload|    Complete | [#25](/../../issues/25)
 | Task 6 | SSH2Shell Integration |    Complete | [#24](/../../issues/24)
-| Task 7 | SSH2Shell Integration |    Complete | [#30](/../../issues/30)
+| Task 7 | Screencast |    Complete | [#30](/../../issues/30)
