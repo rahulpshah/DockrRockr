@@ -273,8 +273,14 @@ class Bot {
                 password:     v_password,
             },
             passwordPrompt: v_password,
-            commands: [ "echo $(pwd)", "sudo su", v_password,"service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "docker build -t test ."],
-            callback: function(sessionText){
+            commands: [ "echo $(pwd)", "sudo su", v_password,"service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "docker build -t test ."]
+        };
+
+        var SSH2Shell = require ('ssh2shell'),
+        //Create a new instance passing in the host object 
+        SSH = new SSH2Shell(host),
+        //Use a callback function to process the full session text 
+        callback = function(sessionText){
             console.log(sessionText);
             self.send("Docker image is ready. Do you want to deploy it?", self.slack.dataStore.getChannelByName("general"));
             self.respondTo("Yes deploy", function()
@@ -288,26 +294,24 @@ class Bot {
                         password:     v_password,
                     },
                     passwordPrompt: v_password,
-                    commands: ["docker run -p 80:80 test"],
-			 callback:     function(sessionText){
-                                            console.log(sessionText);
-                                              self.send("Your image is deployed here: http://" + hostname, self.slack.dataStore.getChannelByName("general"));
-                                        }
+                    commands: ["docker run -p 80:80 test"]
                 };
-                var SSH1 = new SSH2Shell(host);
+                var SSH1 = new SSH2Shell(host),
+
+                //Use a callback function to process the full session text 
+                callback1 = function(sessionText){
+                    console.log(sessionText);
+                }
+
                 //Start the process 
-                SSH1.connect();
+                SSH1.connect(callback1);
    
             });
-            }
-        };
 
-        var SSH2Shell = require ('ssh2shell'),
-        //Create a new instance passing in the host object 
-        SSH = new SSH2Shell(host);
-    
+        }
+
         //Start the process 
-        SSH.connect();
+        SSH.connect(callback);
     }
 
     
