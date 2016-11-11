@@ -67,3 +67,4 @@
 | Task 3 | GitHub Webhook|    Complete | [#27](/../../issues/27)
 | Task 4 | AWS implemetation|    Complete | [#26](/../../issues/26)
 | Task 5 | Updates to Server.js code for payload|    Complete | [#25](/../../issues/25)
+| Task 6 | SSH2Shell Integration |    Complete | [#24](/../../issues/24)
