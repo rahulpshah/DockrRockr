@@ -84,14 +84,10 @@ Ask the user whether he wants to deploy the latest docker image, if yes, deploy 
 ```
 
 ##### Workflow as per Screencast:<br/>
-1. <br/>
-2. <br/>
-3. <br/>
-4. <br/>
-5. <br/>
-
-Assumptions:<br/>
-One repo for each ip address of a team. 
+1. The messages displayed to the user are 'File Uploaded', 'Your image is being created. I will ping you when it's done.', 'Docker image is ready do you want to deploy?'.<br/>
+2. The user enters 'yes deploy'.<br/>
+3. The message that will be displayed is 'Your image is deployed at <mock-url>'<br/>
+4. Now any changes to made to the repp, will recreate the image and ask the user if we should deploy it again.<br/>
 
 ### Task Tracking
 
