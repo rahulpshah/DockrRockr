@@ -1,5 +1,4 @@
 'use strict';
-
 const RtmClient = require('@slack/client').RtmClient;
 const MemoryDataStore = require('@slack/client').MemoryDataStore;
 const CLIENT_EVENTS = require('@slack/client').CLIENT_EVENTS;
@@ -301,6 +300,7 @@ class Bot {
                 //Use a callback function to process the full session text 
                 callback1 = function(sessionText){
                     console.log(sessionText);
+                    self.send("Your image is deployed here: http://"+ hostname, self.slack.dataStore.getChannelByName("general"));
                 }
 
                 //Start the process 

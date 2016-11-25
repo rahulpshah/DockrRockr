@@ -11,16 +11,17 @@ let Serve = require('./src/app/server.js')
 //Mock JSON
 
 //Bot construction
+/*
 const bot = new Bot({
   token: process.env.SLACK_TOKEN,
   autoReconnect: true,
   autoMark: true
 });
-
+*/
 const server = new Serve();
 
-
-//Hello Message
+var bot = server.bot;
+//Hello Messag
 bot.respondTo('hello', (message, channel, user) => {
   bot.send(`Hi, ${user.name}! What can I do for you today?`, channel)
   bot.send('You can start by asking me to \`create a docker\` file', channel)
@@ -45,6 +46,17 @@ bot.respondTo('hello', (message, channel, user) => {
 // }, true);
 //TODO fix this function
 
+bot.respondTo('help', (message, channel, user) => {
+
+  client.get(user.name, (err, reply) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    bot.send("I respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
+  });
+});
+
 bot.respondTo('commands', (message, channel, user) => {
 
   client.get(user.name, (err, reply) => {
@@ -54,7 +66,6 @@ bot.respondTo('commands', (message, channel, user) => {
     }
     bot.send("I respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
   });
-
 });
 //HTML message
 bot.respondTo('Create a Docker', (path, channel, user) => {

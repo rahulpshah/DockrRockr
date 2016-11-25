@@ -9,14 +9,17 @@ const client = redis.createClient();
 var bodyParser = require('body-parser');
 //TODO: replace filename to Bot
 var Bot = require("../../bot.js");
-const bot = new Bot({
-  token: process.env.SLACK_TOKEN,
-  autoReconnect: true,
-  autoMark: true
-});
+
+
 class Serve {
 
-  constructor() {
+  constructor() 
+  {
+    this.bot = new Bot({
+      token: process.env.SLACK_TOKEN,
+      autoReconnect: true,
+      autoMark: true
+    });
     app.use("/", express.static(path.join(__dirname, 'public')));
 
     app.use(bodyParser.json());
