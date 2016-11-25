@@ -15,7 +15,8 @@ class Serve {
 
   constructor() 
   {
-    this.bot = new Bot({
+    var self = this;
+    self.bot = new Bot({
       token: process.env.SLACK_TOKEN,
       autoReconnect: true,
       autoMark: true
@@ -33,11 +34,11 @@ class Serve {
       console.log(status);
       if(status == "pass")
       {
-        bot.send("Docker Build Passed", bot.slack.dataStore.getChannelByName("general"));
+        self.bot.send("Docker Build Passed", self.bot.slack.dataStore.getChannelByName("general"));
       }
       else
       {
-        bot.send("Docker Build Failed", bot.slack.dataStore.getChannelByName("general"));
+        self.bot.send("Docker Build Failed", self.bot.slack.dataStore.getChannelByName("general"));
       }
     });
     app.get('/',function(req,res) {
@@ -76,11 +77,11 @@ class Serve {
           framework: obj.framework,
           db: obj.db,
           port: obj.port ,
-          channel: bot.slack.dataStore.getChannelByName("general"),
+          channel: self.bot.slack.dataStore.getChannelByName("general"),
 
         }
         // console.log(jsondata);
-        bot.createDockerFile(jsondata);
+        self.bot.createDockerFile(jsondata);
         res.end("Your request for new docker file is being processed. Bot will respond with the file soon.")
 
         }
@@ -104,12 +105,8 @@ class Serve {
               console.log(repoName);
 
               ///// Call createImage here with relevant parameters
-              bot.createImage(awsIP, awsUsername, awspswd, owner, repo);
-<<<<<<< HEAD
-		bot.send("Your image is being created. I will ping you when its done. ", bot.slack.dataStore.getChannelByName("general"));
-=======
-              bot.send("Your image is being built. I will notify you once its done.", bot.slack.dataStore.getChannelByName("general"));
->>>>>>> 82a41b502203b6ac510b9ba6242bd2316ecc6c62
+              self.bot.createImage(awsIP, awsUsername, awspswd, owner, repo);
+		self.bot.send("Your image is being created. I will ping you when its done. ", self.bot.slack.dataStore.getChannelByName("general"));
             });
         
         } else {
