@@ -15,7 +15,8 @@ class Serve {
 
   constructor() 
   {
-    this.bot = new Bot({
+    self = this;
+    self.bot = new Bot({
       token: process.env.SLACK_TOKEN,
       autoReconnect: true,
       autoMark: true
