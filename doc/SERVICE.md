@@ -29,7 +29,6 @@ Use Case 1 : Creating the Dockerfile + ChatOps
 1 Preconditions
    User must have a Slack account.
    User must have a GitHub account.
-   User must have a DockerHub account.
    User must have an AWS account, and token.
 2 Main Flow
    User will invoke bot using command 'hello' [S1]. Bot will return a response[S2]. User gives a command of creating a docker file [S3]. User completes form to fill in user details[S4].
