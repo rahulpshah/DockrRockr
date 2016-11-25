@@ -58,18 +58,14 @@
 | | |     |
 | | |     |
 
-### Week 3
+### Week 3 - 4
 
 | Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
 | ------------- | ------------- | ------------  |  ------------
-| Task 1    | Finalize Architectural Desgin |   Complete       | [#1](/../../issues/1)
-| | |     |
-| | |     |
-
-### Week 4
-
-| Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
-| ------------- | ------------- | ------------  |  ------------
-| Task 1    | Finalize Architectural Desgin |   Complete       | [#1](/../../issues/1)
-| | |     |
-| | |     |
+| Task 1 | Update Form Fields as workflow has changed a bit. |   Complete       | [#29](/../../issues/29)
+| Task 2 | Docker Script |   Complete  | [#28](/../../issues/28)
+| Task 3 | GitHub Webhook|    Complete | [#27](/../../issues/27)
+| Task 4 | AWS implemetation|    Complete | [#26](/../../issues/26)
+| Task 5 | Updates to Server.js code for payload|    Complete | [#25](/../../issues/25)
+| Task 6 | SSH2Shell Integration |    Complete | [#24](/../../issues/24)
+| Task 7 | Screencast |    Complete | [#30](/../../issues/30)

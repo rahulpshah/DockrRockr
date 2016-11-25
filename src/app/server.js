@@ -9,14 +9,17 @@ const client = redis.createClient();
 var bodyParser = require('body-parser');
 //TODO: replace filename to Bot
 var Bot = require("../../bot.js");
-const bot = new Bot({
-  token: process.env.SLACK_TOKEN,
-  autoReconnect: true,
-  autoMark: true
-});
+
+
 class Serve {
 
-  constructor() {
+  constructor() 
+  {
+    this.bot = new Bot({
+      token: process.env.SLACK_TOKEN,
+      autoReconnect: true,
+      autoMark: true
+    });
     app.use("/", express.static(path.join(__dirname, 'public')));
 
     app.use(bodyParser.json());
@@ -102,7 +105,11 @@ class Serve {
 
               ///// Call createImage here with relevant parameters
               bot.createImage(awsIP, awsUsername, awspswd, owner, repo);
+<<<<<<< HEAD
 		bot.send("Your image is being created. I will ping you when its done. ", bot.slack.dataStore.getChannelByName("general"));
+=======
+              bot.send("Your image is being built. I will notify you once its done.", bot.slack.dataStore.getChannelByName("general"));
+>>>>>>> 82a41b502203b6ac510b9ba6242bd2316ecc6c62
             });
         
         } else {

@@ -1,5 +1,4 @@
 'use strict';
-
 const RtmClient = require('@slack/client').RtmClient;
 const MemoryDataStore = require('@slack/client').MemoryDataStore;
 const CLIENT_EVENTS = require('@slack/client').CLIENT_EVENTS;
@@ -260,7 +259,7 @@ class Bot {
           username: username, 
           password: password
         });
-        self.send("Your Docker Image is being created. I will ping you when its done", this.slack.dataStore.getChannelByName("testing"));
+        self.send("Your Docker Image is being created. I will ping you when its done", this.slack.dataStore.getChannelByName("general"));
     }*/
 
     createImage(hostname, v_username, v_password, v_owner, v_repoName, cb) { 
