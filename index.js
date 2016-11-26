@@ -72,6 +72,10 @@ bot.respondTo('Create a Docker', (path, channel, user) => {
     bot.send('Please fill this form to create a dockerfile\n http://35.160.249.120:8081', channel);
   }, true);
 
+bot.respondTo('Track repo', (path, channel, user) => {
+    bot.send('Please fill this form to track your repo\n http://35.160.249.120:8081/track', channel);
+  }, true);
+
 //Redis connection
 client.on('error', (err) => {
     console.log('Error ' + err);

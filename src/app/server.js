@@ -41,6 +41,55 @@ class Serve {
         self.bot.send("Docker Build Failed", self.bot.slack.dataStore.getChannelByName("general"));
       }
     });
+
+    app.get('/track',function(req,res) {
+      res.render('index.html');
+    });
+
+    app.post('/track', function(req, res){
+        var obj = {}
+        obj = req.body;
+        console.log(obj.gitUsername.concat('/',obj.repo));
+
+        var key = obj.gitUsername.concat('/',obj.repo);
+
+        client.exists(key, function(err, reply) {
+          if (reply === 1) {
+            res.end(key + "is already being tracked!");
+          } else {
+            console.log('doesn\'t exist');
+            //client.set(obj.gitUsername.concat('/',obj.repo),`{${obj.app},${obj.gitUsername},${obj.repo},${obj.gitToken},${obj.awsToken},${obj.awsIP},${obj.awsUsername},${obj.awsPassword}, ${obj.framework}, ${obj.db}, ${obj.port}}`);
+        
+            client.rpush([key,obj.gitUsername,obj.repo,obj.gitToken,obj.awsIP,obj.awsUsername,obj.awsPassword,obj.framework, obj.db, obj.port],function(err,reply){
+                console.log('pushed to redis');
+            });
+    
+        var json1 = {
+          //maintainer: obj.maintainer,
+          app: obj.app,
+          gitUsername: obj.gitUsername,
+          repo: obj.repo,
+          gitToken: obj.gitToken,
+          awsIP: obj.awsIP,
+          awsUsername: obj.awsUsername,
+          awsPassword: obj.awsPassword,
+          //dhtoken: obj.dhToken,
+          framework: obj.framework,
+          db: obj.db,
+          port: obj.port ,
+          channel: self.bot.slack.dataStore.getChannelByName("general"),
+
+        }
+        // console.log(jsondata);
+        self.createGitHook(json1.gitUsername, json1.repo, json1.gitToken,function(err, res) {
+            self.send('Git Hook Created for ' + json1.repo, json1.channel);
+        });
+          res.end("Your request is being processed. We'll ping you on slack when it is done!");
+        
+          }
+        }); // checking if client
+
+    });    
     app.get('/',function(req,res) {
       res.render('index.html');
     });
@@ -63,7 +112,6 @@ class Serve {
                 console.log('pushed to redis');
             });
     
-      //TODO: replace this by mock json file - FIXED 11/9
         var jsondata = {
           //maintainer: obj.maintainer,
           app: obj.app,
