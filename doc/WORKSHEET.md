@@ -69,3 +69,12 @@
 | Task 5 | Updates to Server.js code for payload|    Complete | [#25](/../../issues/25)
 | Task 6 | SSH2Shell Integration |    Complete | [#24](/../../issues/24)
 | Task 7 | Screencast |    Complete | [#30](/../../issues/30)
+
+### Week 5 - 6
+
+| Deliverable   | Deliverable Name |Item/Status   |  Issues/Tasks
+| ------------- | ------------- | ------------  |  ------------
+| Task 1 | Error Correction for Nested Calls |   Complete       | [#34](/../../issues/34)
+| Task 2 | Additional Commands for bot |   Complete  | [#32](/../../issues/32)
+| Task 3 | Deployment Scripts |    Complete | [#33](/../../issues/33)
+| Task 4 | Screencast - Deploy |    Complete | [#31](/../../issues/31)
