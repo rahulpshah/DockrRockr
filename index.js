@@ -75,6 +75,7 @@
       bot.send("The only rule here is : 不要撒謊 \nI respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
     });
   });
+
     bot.respondTo('help', (message, channel, user) => {
     if (channel._modelName == "DM"){
     client.get(user.name, (err, reply) => {
@@ -87,9 +88,15 @@
   }
 });
 
-bot.respondTo('Track repo', (path, channel, user) => {
+bot.respondTo('<@u2pr6rru3> Track repo', (path, channel, user) => {
     bot.send('Please fill this form to track your repo\n http://35.160.249.120:8081/track', channel);
   }, true);
+
+bot.respondTo('Track repo', (path, channel, user) => {
+        if (channel._modelName == "DM"){
+      bot.send('Please fill this form to track your repo\n http://35.160.249.120:8081/track', channel);
+    }
+    }, true);
 
 //Redis connection
 client.on('error', (err) => {
