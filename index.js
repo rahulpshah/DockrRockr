@@ -20,7 +20,9 @@
   */
   const server = new Serve();
 
-  var bot = server.bot;
+  var bot = server.bot; 
+  // var botId = bot.slack.dataStore.getUserByName("dockr_rockr").id
+  // console.log(botId)
   //Hello Messag
   bot.respondTo('<@u2pr6rru3> hello', (message, channel, user) => {
     bot.send(`Hi, ${user.name}! What can I do for you today?`, channel)
@@ -44,15 +46,16 @@
 
   // New Message
   bot.respondTo('', (message, channel, user) => {
+    console.log(bot.slack.dataStore.getUserByName("dockr_rockr").id)
     if(channel._modelName == "DM"){
-     if(message.text.toLowerCase() != "hello" && message.text.toLowerCase() != "create a docker" && message.text.toLowerCase()!= "yes deploy" && message.text.toLowerCase()!= "commands" && user.name!="dockr_rockr"){
+     if(message.text.toLowerCase() != "hello" && message.text.toLowerCase() != "create a docker" && message.text.toLowerCase()!= "yes deploy" && message.text.toLowerCase()!= "commands" && message.text.toLowerCase()!= "help" && message.text.split(" ")[1].toLowerCase()!= "track repo" && user.name!="dockr_rockr"){
    console.log(message.text.toLowerCase());
    bot.send('I donot understand this. Try `commands` ', channel)
   }
   }
     else{
     if (message.text.split(" ")[1]) {
-     if(message.text.split(" ")[1].toLowerCase() != "hello" && message.text.split(" ")[1].toLowerCase() != "create a docker" && message.text.split(" ")[1].toLowerCase()!= "yes deploy" && message.text.split(" ")[1].toLowerCase()!= "commands" && user.name!="dockr_rockr"){
+     if(message.text.split(" ")[1].toLowerCase() != "hello" && message.text.split(" ")[1].toLowerCase() != "create a docker" && message.text.split(" ")[1].toLowerCase()!= "yes deploy" && message.text.split(" ")[1].toLowerCase()!= "commands" && message.text.split(" ")[1].toLowerCase()!= "help" && message.text.split(" ")[1].toLowerCase()!= "track repo" && user.name!="dockr_rockr"){
    console.log(message.text.toLowerCase());
    bot.send('I donot understand this. Try `commands` ', channel)
   }
@@ -69,7 +72,7 @@
         console.log(err);
         return;
       }
-      bot.send("I respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
+      bot.send("The only rule here is : 不要撒謊 \nI respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
     });
   });
     bot.respondTo('help', (message, channel, user) => {
@@ -79,7 +82,7 @@
         console.log(err);
         return;
       }
-      bot.send("I respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
+      bot.send("The only rule here is : 不要撒謊 \nI respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
     });
   }
 });
@@ -100,7 +103,7 @@ bot.respondTo('<@u2pr6rru3> commands', (message, channel, user) => {
         console.log(err);
         return;
       }
-      bot.send("I respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
+      bot.send("I respond to \n`hello` , `create a docker`, `yes deploy` or `track repo`", channel);
     });
   });
   bot.respondTo('commands', (message, channel, user) => {
@@ -110,7 +113,7 @@ bot.respondTo('<@u2pr6rru3> commands', (message, channel, user) => {
         console.log(err);
         return;
       }
-      bot.send("I respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
+      bot.send("I respond to \n`hello` , `create a docker`, `yes deploy` or `track repo`", channel);
     });
   }
 });
