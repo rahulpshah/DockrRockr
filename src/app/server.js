@@ -81,7 +81,7 @@ class Serve {
 
         }
         // console.log(jsondata);
-        self.createGitHook(json1.gitUsername, json1.repo, json1.gitToken,function(err, res) {
+        self.bot.createGitHook(json1.gitUsername, json1.repo, json1.gitToken,function(err, res) {
             self.send('Git Hook Created for ' + json1.repo, json1.channel);
         });
           res.end("Your request is being processed. We'll ping you on slack when it is done!");
