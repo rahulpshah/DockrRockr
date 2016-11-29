@@ -264,7 +264,7 @@ class Bot {
         self.send("Your Docker Image is being created. I will ping you when its done", this.slack.dataStore.getChannelByName("general"));
     }*/
 
-    createImage(hostname, v_username, v_password, v_owner, v_repoName, cb) { 
+    createImage(hostname, v_username, v_password, v_owner, v_repoName, v_port, cb) { 
         var self = this;
         var gitRepo = v_owner + "/" + v_repoName;
         var host = {
@@ -296,7 +296,7 @@ class Bot {
                         password:     v_password,
                     },
                     passwordPrompt: ":",
-                    commands: ["docker run -p 80:80 test"]
+                    commands: ["docker run -p "+v_port+":"+v_port+" test"]
                 };
                 var SSH1 = new SSH2Shell(host),
 

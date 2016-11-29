@@ -110,7 +110,7 @@ class Serve {
             console.log('doesn\'t exist');
             //client.set(obj.gitUsername.concat('/',obj.repo),`{${obj.app},${obj.gitUsername},${obj.repo},${obj.gitToken},${obj.awsToken},${obj.awsIP},${obj.awsUsername},${obj.awsPassword}, ${obj.framework}, ${obj.db}, ${obj.port}}`);
         
-            client.rpush([key,obj.gitUsername,obj.repo,obj.gitToken,obj.awsIP,obj.awsUsername,obj.awsPassword,obj.framework, obj.db, obj.port],function(err,reply){
+            client.rpush([key, obj.gitUsername, obj.repo, obj.gitToken, obj.awsIP, obj.awsUsername, obj.awsPassword,obj.framework, obj.db, obj.port],function(err,reply){
                 console.log('pushed to redis');
             });
     
@@ -151,11 +151,12 @@ class Serve {
               var awsIP = reply[3];
               var owner = reply[0];
               var repo = reply[1];
+              var port = reply[8];
               console.log(awsUsername);
               console.log(repoName);
 
               ///// Call createImage here with relevant parameters
-              self.bot.createImage(awsIP, awsUsername, awspswd, owner, repo);
+              self.bot.createImage(awsIP, awsUsername, awspswd, owner,repo, port);
 		self.bot.send("Your image is being created. I will ping you when its done. ", self.bot.slack.dataStore.getChannelByName("general"));
             });
         
