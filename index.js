@@ -107,6 +107,12 @@ bot.respondTo('Track repo', (path, channel, user) => {
     }
     }, true);
 
+bot.respondTo('hello', (message, channel, user) => {
+    if (channel._modelName == "DM"){
+    bot.send(`Hi, ${user.name}! What can I do for you today?`, channel)
+    bot.send('You can start by asking me to \`create a docker\` file', channel)
+  }
+  }, true);
 //Redis connection
 client.on('error', (err) => {
     console.log('Error ' + err);

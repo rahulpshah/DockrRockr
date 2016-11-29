@@ -46,7 +46,7 @@ class Bot {
 
         // Create an ES6 Map to store our regular expressions
         this.keywords = new Map();
-
+        this.s_keywords = new Map();
         this.slack.on(RTM_EVENTS.MESSAGE, (message) => {
             // Only process text messages
             if (!message.text) {
@@ -81,7 +81,11 @@ class Bot {
 
         // Set the regular expression to be the key, with the callback
         // function as the value
-        this.keywords.set(regex, callback);
+        if(!(this.s_keywords.has(keywords)))
+        {
+             this.keywords.set(regex, callback);
+             this.s_keywords.set(keywords, callback);
+        }
     }
 
     // Send a message to a channel, with an optional callback
@@ -264,7 +268,7 @@ class Bot {
         self.send("Your Docker Image is being created. I will ping you when its done", this.slack.dataStore.getChannelByName("general"));
     }*/
 
-    createImage(hostname, v_username, v_password, v_owner, v_repoName, v_port, cb) { 
+    createImage(hostname, v_username, v_password, v_owner, v_repoName, v_port, app_name, cb) { 
         var self = this;
         var gitRepo = v_owner + "/" + v_repoName;
         var host = {
@@ -275,7 +279,7 @@ class Bot {
             },
             passwordPrompt: ":",
 
-            commands: ["sudo su", "service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "docker build --no-cache=true -t test ."]
+            commands: ["sudo su", "service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master","docker stop $(docker -a -q)","docker rm $(docker -a -q)", "docker build --no-cache=true -t "+app_name+" ."]
         };
 
         var SSH2Shell = require ('ssh2shell'),
@@ -296,14 +300,14 @@ class Bot {
                         password:     v_password,
                     },
                     passwordPrompt: ":",
-                    commands: ["docker run -p "+v_port+":"+v_port+" test"]
+                    commands: ["docker run -p "+v_port+":80 "+" "+app_name]
                 };
                 var SSH1 = new SSH2Shell(host),
 
                 //Use a callback function to process the full session text 
                 callback1 = function(sessionText){
                    console.log(sessionText);
-	               self.send("Your image is deployed here: http://"+ hostname, self.slack.dataStore.getChannelByName("general"));
+	               self.send("Your image is deployed here: http://"+ hostname + ":" + port, self.slack.dataStore.getChannelByName("general"));
                 }
                 //Start the process 
                 SSH1.connect(callback1);
