@@ -10,6 +10,8 @@ var fs = require('fs-extra');
 var http = require('http');
 var Client = require('ssh2').Client;
 var conn = new Client();
+var hostname = process.env.HOST;
+var port = process.env.PORT;
 class Bot {
     constructor(opts) {
         let slackToken = opts.token;
@@ -167,7 +169,7 @@ class Bot {
                 "active": true,
                 "events": ["push"],
                 "config": {
-                    "url": "http://35.160.249.120:8081/gitHook",
+                    "url": "http://" + hostname + ":" + port + "/gitHook",
                     "content_type": "json"
                 }
             }

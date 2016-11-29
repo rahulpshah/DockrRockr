@@ -21,6 +21,8 @@
   const server = new Serve();
 
   var bot = server.bot; 
+  var hostname = process.env.HOST;
+  var port = process.env.PORT;
   // var botId = bot.slack.dataStore.getUserByName("dockr_rockr").id
   // console.log(botId)
   //Hello Messag
@@ -34,7 +36,6 @@
     bot.send('You can start by asking me to \`create a docker\` file', channel)
   }
   }, true);
-
   //Hello Message
   /*bot.respondTo('', (message, channel, user) => {
     if(message.text.toLowerCase() != "hello" && message.text.toLowerCase() != "create a docker" && message.text.toLowerCase()!= "yes deploy" && message.text.toLowerCase()!= "commands"){
@@ -95,12 +96,12 @@
 }, true);
 
 bot.respondTo('<@u2pr6rru3> Track repo', (path, channel, user) => {
-    bot.send('Please fill this form to track your repo\n http://35.160.249.120:8081/track', channel);
+    bot.send('Please fill this form to track your repo\n http://' + hostname + ':' + port + '/track', channel);
   }, true);
 
 bot.respondTo('Track repo', (path, channel, user) => {
         if (channel._modelName == "DM"){
-      bot.send('Please fill this form to track your repo\n http://35.160.249.120:8081/track', channel);
+      bot.send('Please fill this form to track your repo\n http://' + hostname + ':' + port + '/track', channel);
     }
     }, true);
 
@@ -132,11 +133,11 @@ bot.respondTo('<@u2pr6rru3> commands', (message, channel, user) => {
 }, true);
   //HTML message
   bot.respondTo('<@u2pr6rru3> Create a Docker', (path, channel, user) => {
-      bot.send('Please fill this form to create a dockerfile\n http://35.160.249.120:8081', channel);
+      bot.send('Please fill this form to create a dockerfile\n http://' + hostname + ':' + port + '', channel);
     }, true);
    bot.respondTo('Create a Docker', (path, channel, user) => {
         if (channel._modelName == "DM"){
-      bot.send('Please fill this form to create a dockerfile\n http://35.160.249.120:8081', channel);
+      bot.send('Please fill this form to create a dockerfile\n http://' + hostname + ':' + port + '', channel);
     }
     }, true);
 
