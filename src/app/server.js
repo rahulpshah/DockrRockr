@@ -41,12 +41,13 @@ class Serve {
         self.bot.send("Docker Build Failed", self.bot.slack.dataStore.getChannelByName("general"));
       }
     });
+    app.use("/track", express.static(path.join(__dirname, 'public')));
+    app.get('/track/',function(req,res) {
+      res.render('index.html');
 
-    app.get('/track',function(req,res) {
-      res.render('index1.html');
     });
 
-    app.post('/track', function(req, res){
+    app.post('/track/', function(req, res){
         var obj = {}
         obj = req.body;
         console.log(obj.gitUsername.concat('/',obj.repo));
