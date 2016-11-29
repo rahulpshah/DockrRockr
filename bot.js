@@ -189,11 +189,11 @@ class Bot {
 
     createDockerFile(json, cb) {
         //Create Dockerfile from template and replace with user credentials
-        var source = 'Files/DockerfileTemplate';
+        var source = 'DockerfileTemplate';
         var target = 'Dockerfile';
         var self = this;
         fs.copy(source, target, function() {
-            var mapObj = { FullName: json.maintainer, Email: "test@ncsu.edu", AppName: json.app };
+            var mapObj = { FullName: json.gitUsername, Port: json.port };
             var re = new RegExp(Object.keys(mapObj).join("|"), "gi");
             fs.readFile("Dockerfile", 'utf8', function(err, data) {
                 if (err) {
