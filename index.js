@@ -47,11 +47,17 @@
   // New Message
   bot.respondTo('', (message, channel, user) => {
     console.log(bot.slack.dataStore.getUserByName("dockr_rockr").id)
+    var check = ["hello", "create a docker", "yes deploy", "commands", "help", "track repo"]
     if(channel._modelName == "DM"){
-     if(message.text.toLowerCase() != "hello" && message.text.toLowerCase() != "create a docker" && message.text.toLowerCase()!= "yes deploy" && message.text.toLowerCase()!= "commands" && message.text.toLowerCase()!= "help" && message.text.split(" ")[1].toLowerCase()!= "track repo" && user.name!="dockr_rockr"){
-   console.log(message.text.toLowerCase());
-   bot.send('I donot understand this. Try `commands` ', channel)
-  }
+
+     var message = message.text.toLowerCase();
+     if(message.indexOf("<@u2pr6rru3>") > -1){
+      message = message.split(" ")[1]
+     }
+     if(user.name!="dockr_rockr" && !(check.indexOf(message) > -1)){
+        //console.log(message.text.toLowerCase());
+        bot.send('I donot understand this. Try `commands` ', channel)
+      }
   }
     else{
     if (message.text.split(" ")[1]) {
@@ -74,7 +80,7 @@
       }
       bot.send("The only rule here is : 不要撒謊 \nI respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
     });
-  });
+  }, true);
 
     bot.respondTo('help', (message, channel, user) => {
     if (channel._modelName == "DM"){
@@ -86,7 +92,7 @@
       bot.send("The only rule here is : 不要撒謊 \nI respond to \n`hello` , `create a docker` or `yes deploy` ", channel);
     });
   }
-});
+}, true);
 
 bot.respondTo('<@u2pr6rru3> Track repo', (path, channel, user) => {
     bot.send('Please fill this form to track your repo\n http://35.160.249.120:8081/track', channel);
@@ -112,7 +118,7 @@ bot.respondTo('<@u2pr6rru3> commands', (message, channel, user) => {
       }
       bot.send("I respond to \n`hello` , `create a docker`, `yes deploy` or `track repo`", channel);
     });
-  });
+  }, true);
   bot.respondTo('commands', (message, channel, user) => {
     if (channel._modelName == "DM"){
     client.get(user.name, (err, reply) => {
@@ -123,7 +129,7 @@ bot.respondTo('<@u2pr6rru3> commands', (message, channel, user) => {
       bot.send("I respond to \n`hello` , `create a docker`, `yes deploy` or `track repo`", channel);
     });
   }
-});
+}, true);
   //HTML message
   bot.respondTo('<@u2pr6rru3> Create a Docker', (path, channel, user) => {
       bot.send('Please fill this form to create a dockerfile\n http://35.160.249.120:8081', channel);
