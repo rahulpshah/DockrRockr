@@ -3,11 +3,13 @@
   vars:
       slack_token: "{{ lookup('env','SLACK_TOKEN') }}"
   tasks:
+    - name: "set environment token"
+      raw: export SLACK_TOKEN={{ slack_token }}
     - name: "Download Repo"
       yum: name=http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm state=present
       become: true
     - name: Download the dependencies
-      yum: name={{item}} state=present  
+      yum: name={{item}} state=present
       with_items:
        - npm
        - git
@@ -29,6 +31,4 @@
       command: forever index.js chdir=~/DockrRockr
       async: 45
       poll: 0
-      
-       
 
