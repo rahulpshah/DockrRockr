@@ -43,7 +43,7 @@ class Serve {
     });
     app.use("/track", express.static(path.join(__dirname, 'public')));
     app.get('/track/',function(req,res) {
-      res.render('index.html');
+      res.render('index1.html');
 
     });
 
