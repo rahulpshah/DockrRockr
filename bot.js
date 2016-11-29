@@ -271,10 +271,11 @@ class Bot {
             server:        {     
                 host:         hostname,
                 userName:     v_username,
-                password:     v_password,
+                password:     v_password
             },
-            passwordPrompt: v_password,
-            commands: ["git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "docker build -t test ."]
+            passwordPrompt: ":",
+
+            commands: ["sudo service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "sudo docker build -t test ."]
         };
 
         var SSH2Shell = require ('ssh2shell'),
@@ -294,8 +295,8 @@ class Bot {
                         userName:     v_username,
                         password:     v_password,
                     },
-                    passwordPrompt: v_password,
-                    commands: ["docker run -p 80:80 test"]
+                    passwordPrompt: ":",
+                    commands: ["sudo docker run -p 80:80 test"]
                 };
                 var SSH1 = new SSH2Shell(host),
 
