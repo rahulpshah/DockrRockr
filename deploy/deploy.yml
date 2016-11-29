@@ -69,7 +69,7 @@
   - name: Install redis
     script: install_redis.sh
   - name: Download the project from git
-    git: repo=http://www.github.ncsu.edu/jsharda/DockrRockr.git dest=~/DockrRockr
+    git: repo=http://www.github.com/rahulpshah/DockrRockr.git dest=~/DockrRockr
   - name: Install forever
     npm: name=forever global=yes state=present
     become: true

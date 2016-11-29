@@ -1,3 +1,5 @@
+pip install boto
+pip install ansible
 # Prerequisites for running this code
 # Ansible installed on the this machine
 # npm, node, python installed
