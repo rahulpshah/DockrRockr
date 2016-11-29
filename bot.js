@@ -289,7 +289,7 @@ class Bot {
         callback = function(sessionText){
             console.log(sessionText);
             self.send("Docker image is ready. Do you want to deploy it?", self.slack.dataStore.getChannelByName("general"));
-            self.respondTo("Yes deploy", function()
+            self.respondTo("<@u2pr6rru3> Yes deploy", function()
             {
                 SSH2Shell = require ('ssh2shell'),
                 //Create a new instance passing in the host object 
