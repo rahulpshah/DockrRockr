@@ -49,9 +49,10 @@
   bot.respondTo('', (message, channel, user) => {
     console.log(bot.slack.dataStore.getUserByName("dockr_rockr").id)
     var check = ["hello", "create a docker", "yes deploy", "commands", "help", "track repo"]
+    var message = message.text.toLowerCase();
     if(channel._modelName == "DM"){
 
-     var message = message.text.toLowerCase();
+     
      if(message.indexOf("<@u2pr6rru3>") > -1){
       message = message.split(" ")[1]
      }
@@ -61,9 +62,9 @@
       }
   }
     else{
-    if (message.text.split(" ")[1]) {
-     if(message.text.split(" ")[1].toLowerCase() != "hello" && message.text.split(" ")[1].toLowerCase() != "create a docker" && message.text.split(" ")[1].toLowerCase()!= "yes deploy" && message.text.split(" ")[1].toLowerCase()!= "commands" && message.text.split(" ")[1].toLowerCase()!= "help" && message.text.split(" ")[1].toLowerCase()!= "track repo" && user.name!="dockr_rockr"){
-   console.log(message.text.toLowerCase());
+    if(message.indexOf("<@u2pr6rru3>") > -1) {
+     if(message.split(" ")[1].toLowerCase() != "hello" && message.split(" ")[1].toLowerCase() != "create a docker" && message.split(" ")[1].toLowerCase()!= "yes deploy" && message.split(" ")[1].toLowerCase()!= "commands" && message.split(" ")[1].toLowerCase()!= "help" && message.split(" ")[1].toLowerCase()!= "track repo" && user.name!="dockr_rockr"){
+   console.log(message.toLowerCase());
    bot.send('I donot understand this. Try `commands` ', channel)
   }
   }
