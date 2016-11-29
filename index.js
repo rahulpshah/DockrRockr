@@ -54,7 +54,7 @@
 
      
      if(message.indexOf("<@u2pr6rru3>") > -1){
-      message = message.split(" ")[1]
+      message = message.split(" ").splice(1).join(" ");
      }
      if(user.name!="dockr_rockr" && !(check.indexOf(message) > -1)){
         //console.log(message.text.toLowerCase());
@@ -63,7 +63,8 @@
   }
     else{
     if(message.indexOf("<@u2pr6rru3>") > -1) {
-     if(message.split(" ")[1].toLowerCase() != "hello" && message.split(" ")[1].toLowerCase() != "create a docker" && message.split(" ")[1].toLowerCase()!= "yes deploy" && message.split(" ")[1].toLowerCase()!= "commands" && message.split(" ")[1].toLowerCase()!= "help" && message.split(" ")[1].toLowerCase()!= "track repo" && user.name!="dockr_rockr"){
+      message = message.split(" ").splice(1).join(" ");
+     if(user.name!="dockr_rockr" && !(check.indexOf(message) > -1)){
    console.log(message.toLowerCase());
    bot.send('I donot understand this. Try `commands` ', channel)
   }
