@@ -275,7 +275,7 @@ class Bot {
             },
             passwordPrompt: ":",
 
-            commands: ["sudo service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "sudo docker build -t test ."]
+            commands: ["sudo su", "sudo service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "sudo docker build -t test ."]
         };
 
         var SSH2Shell = require ('ssh2shell'),
