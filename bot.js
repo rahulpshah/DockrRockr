@@ -274,7 +274,7 @@ class Bot {
                 password:     v_password,
             },
             passwordPrompt: v_password,
-            commands: [ "echo $(pwd)", "sudo su", v_password,"service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "docker build -t test ."]
+            commands: ["git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master", "docker build -t test ."]
         };
 
         var SSH2Shell = require ('ssh2shell'),
@@ -302,14 +302,12 @@ class Bot {
                 //Use a callback function to process the full session text 
                 callback1 = function(sessionText){
                    console.log(sessionText);
-	           self.send("Your image is deployed here: http://"+ hostname, self.slack.dataStore.getChannelByName("general"));
+	               self.send("Your image is deployed here: http://"+ hostname, self.slack.dataStore.getChannelByName("general"));
                 }
-
                 //Start the process 
                 SSH1.connect(callback1);
    
             });
-
         }
 
         //Start the process 
