@@ -43,7 +43,7 @@ class Serve {
     });
 
     app.get('/track',function(req,res) {
-      res.render('index.html');
+      res.render('index1.html');
     });
 
     app.post('/track', function(req, res){
