@@ -45,6 +45,15 @@
   }, true);
   */
 
+   bot.respondTo('<@u2pr6rru3> No', (message, channel, user) => {
+    bot.send('Ok', channel)
+  }, true);
+  bot.respondTo('No', (message, channel, user) => {
+    if (channel._modelName == "DM"){
+    bot.send('Ok', channel)
+  }
+  }, true);
+
   // New Message
   bot.respondTo('', (message, channel, user) => {
     console.log(bot.slack.dataStore.getUserByName("dockr_rockr").id)
@@ -107,12 +116,6 @@ bot.respondTo('Track repo', (path, channel, user) => {
     }
     }, true);
 
-bot.respondTo('hello', (message, channel, user) => {
-    if (channel._modelName == "DM"){
-    bot.send(`Hi, ${user.name}! What can I do for you today?`, channel)
-    bot.send('You can start by asking me to \`create a docker\` file', channel)
-  }
-  }, true);
 //Redis connection
 client.on('error', (err) => {
     console.log('Error ' + err);
