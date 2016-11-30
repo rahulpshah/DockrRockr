@@ -152,6 +152,10 @@ class Bot {
                     }
                 }
             }
+	    else
+	    {
+                self.send("Error occured while pushing to git. Please check credentials", self.slack.dataStore.getChannelByName("general"));
+	    }
         });
     }
 
@@ -187,6 +191,10 @@ class Bot {
                 if (cb) {
                     cb();
                 }
+            }
+            else
+            { 
+		self.send("Error occured while creating git hook. Hook already created", self.slack.getChannelByName("general"));
             }
         });
     }
@@ -237,7 +245,7 @@ class Bot {
                                          }
                                          else
                                          {
-                                            self.send('Git Hook Created', json.channel);   
+                                            self.send('Git Hook Created', json.channel);
                                          }
                                          
                                     });
