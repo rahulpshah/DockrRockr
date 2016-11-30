@@ -39,6 +39,12 @@ Samrudhi Sharma - ssharm17<br/>
 
 Testing should be done on the general channel.
 
+##### Acceptance Test Instructions for Use Case 1
+
+##### Acceptance Test Instructions for Use Case 2
+
+##### Acceptance Test Instructions for Use Case 3
+
 ### Task Tracking
 
 [Time Tracking Worksheet](WORKSHEET.md)
