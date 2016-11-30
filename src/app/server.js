@@ -102,15 +102,16 @@ class Serve {
         console.log(obj.gitUsername.concat('/',obj.repo));
 
         var key = obj.gitUsername.concat('/',obj.repo);
+        client.del(key);
 
         client.exists(key, function(err, reply) {
           if (reply === 1) {
-            res.end('Docker file alredy exists for repo '+key);
+            res.end('Dockerfile already exists for '+key);
           } else {
             console.log('doesn\'t exist');
             //client.set(obj.gitUsername.concat('/',obj.repo),`{${obj.app},${obj.gitUsername},${obj.repo},${obj.gitToken},${obj.awsToken},${obj.awsIP},${obj.awsUsername},${obj.awsPassword}, ${obj.framework}, ${obj.db}, ${obj.port}}`);
         
-            client.rpush([key, obj.gitUsername, obj.repo, obj.gitToken, obj.awsIP, obj.awsUsername, obj.awsPassword,obj.framework, obj.db, obj.port, obj.app],function(err,reply){
+                client.rpush([key, obj.gitUsername, obj.repo, obj.gitToken, obj.awsIP, obj.awsUsername, obj.awsPassword,obj.framework, obj.db, obj.port, obj.app],function(err,reply){
                 console.log('pushed to redis');
             });
     
@@ -123,10 +124,9 @@ class Serve {
           awsIP: obj.awsIP,
           awsUsername: obj.awsUsername,
           awsPassword: obj.awsPassword,
-          //dhtoken: obj.dhToken,
           framework: obj.framework,
           db: obj.db,
-          port: obj.port ,
+          port: obj.port,
           channel: self.bot.slack.dataStore.getChannelByName("general"),
 
         }

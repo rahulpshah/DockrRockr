@@ -203,6 +203,7 @@ class Bot {
             var re = new RegExp(Object.keys(mapObj).join("|"), "gi");
             fs.readFile("Dockerfile", 'utf8', function(err, data) {
                 if (err) {
+                    self.send("Error in creating dockerfile", json.channel);
                     return console.log(err);
                 }
                 var result = data.replace(re, function(matched) {
@@ -211,21 +212,37 @@ class Bot {
                 fs.writeFile("Dockerfile", result, 'utf8', function(err) {
                     if (err) 
                     {
+                        self.send("Error in creating dockerfile", json.channel);
                         console.log(err);
                     } 
                     else 
                     {
                         self.fileUpload(`Dockerfile`, json.channel, function(err, res) 
                         {
-                            self.send('File uploaded', json.channel);
-                            self.pushToGit(`Dockerfile`, json.gitUsername, json.repo,json.gitToken, function(err, res) 
+                            if(err)
                             {
-                                self.send('File Pushed on your Git Repository!', json.channel);
-                                self.createGitHook(json.gitUsername, json.repo, json.gitToken,function(err, res) 
+                                self.send("Error in pushing dockerfile. Please fill the form with proper credentials", json.channel);
+                            }
+                            else
+                            {
+                                self.send('File uploaded', json.channel);
+                                self.pushToGit(`Dockerfile`, json.gitUsername, json.repo,json.gitToken, function(err, res)
                                 {
-                                     self.send('Git Hook Created', json.channel);
+                                    self.send('File Pushed on your Git Repository!', json.channel);
+                                    self.createGitHook(json.gitUsername, json.repo, json.gitToken,function(err, res) 
+                                    {
+                                         if(err)
+                                         {
+                                            self.send("Error while creating githook. Git Hook should not be present");
+                                         }
+                                         else
+                                         {
+                                            self.send('Git Hook Created', json.channel);   
+                                         }
+                                         
+                                    });
                                 });
-                            });
+                            }
                         });
                     }
                 });
@@ -278,8 +295,14 @@ class Bot {
                 password:     v_password
             },
             passwordPrompt: ":",
-
             commands: ["sudo su", "service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master","docker stop $(docker -a -q)","docker rm $(docker -a -q)", "docker build --no-cache=true -t "+app_name+" ."]
+            onError: function(err, type){
+                if(err)
+                {
+                    self.send("Build Failed. Check your code at given instance");    
+                }
+                
+            }
         };
 
         var SSH2Shell = require ('ssh2shell'),
@@ -307,7 +330,7 @@ class Bot {
                 //Use a callback function to process the full session text 
                 callback1 = function(sessionText){
                    console.log(sessionText);
-	               self.send("Your image is deployed here: http://"+ hostname + ":" + port, self.slack.dataStore.getChannelByName("general"));
+	               self.send("Your image is deployed here: http://"+ hostname + ":" + v_port, self.slack.dataStore.getChannelByName("general"));
                 }
                 //Start the process 
                 SSH1.connect(callback1);
