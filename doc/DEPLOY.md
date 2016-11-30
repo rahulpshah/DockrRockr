@@ -2,7 +2,7 @@
 
 #### Bot Name: DockrRockr
 
-Team Members: <br/>
+#### Team Members: <br/>
 Krunal Gala - kgala <br/>
 Jigar Sharda - jsharda<br/>
 Shrey Sanghavi - ssangha<br/>
@@ -41,9 +41,24 @@ Testing should be done on the general channel.
 
 ##### Acceptance Test Instructions for Use Case 1
 
+1.
+2.
+3.
+4.
+
 ##### Acceptance Test Instructions for Use Case 2
 
+1.
+2.
+3.
+4
+
 ##### Acceptance Test Instructions for Use Case 3
+
+1.
+2.
+3.
+4.
 
 ### Task Tracking
 
