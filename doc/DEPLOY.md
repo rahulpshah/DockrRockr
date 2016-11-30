@@ -11,6 +11,8 @@ Samrudhi Sharma - ssharm17<br/>
 
 ### Screencast
 
+[![Screencast](https://i1.ytimg.com/vi/GRadbE_9ZZs/default.jpg)](https://youtu.be/GRadbE_9ZZs)
+
 ### Steps for Deployment 
 1. pip install boto
 2. pip install ansible
