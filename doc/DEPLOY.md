@@ -101,10 +101,12 @@ Ask the user whether he wants to deploy the latest docker image, if yes, deploy 
 ```
 ##### Acceptance Test Instructions for Use Case 3
 
-1.
-2.
-3.
-4.
+1. Next user command is: @dockr_rockr Yes deploy
+2. A message is displayed with the link of the deployed app.
+3. Now when code in the repository is changed. A message can be seen on the slack channel: Your image is being created. I will ping you when its done. 
+4. Next message is: Docker image is ready. Do you want to deploy it?
+5. The response should be: @dockr_rockr Yes deploy
+6. The changes will be reflected again on the link.
 
 ### Task Tracking
 
