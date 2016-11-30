@@ -77,10 +77,12 @@ Use Case 2 : Notifying the user when the Docker image is ready
 ```
 ##### Acceptance Test Instructions for Use Case 2
 
-1.
-2.
-3.
-4.
+1. Once the form values are filled. 
+2. The bot responds with the message: Here is your docker file!
+3. Next message is: File Uploaded
+4. Next message is: File Pushed on your Git Repository!
+5. Next message is: Your image is being created. I will ping when its done.
+6. Next message is: Docker image is ready. Do you want to deploy it?
 
 ##### Use Case #3 Definition
 ```
