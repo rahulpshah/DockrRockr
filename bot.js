@@ -138,24 +138,25 @@ class Bot {
         request(options, function(error, response, body) {
             //var obj = JSON.parse(body);
             if (!error) {
-		console.log("-------------------------------------------------------------------");
-		console.log(response);
+		        //console.log("-------------------------------------------------------------------");
+		        //console.log(response);
                 console.log(response.statusCode);
-                //console.log(fs.readFileSync(path, 'utf8').toString('base64'));
                 
                 
-                if (response.statusCode.toString().startsWith("2")) {
+                if (response.statusCode.toString().startsWith("2")) 
+                {
                     console.log("regex passed");
                     if (cb) {
                         console.log("cb called");
                         cb();
                     }
                 }
+                else
+                {
+                    self.send("Error occured while pushing to git. Please check credentials", self.slack.dataStore.getChannelByName("general"));
+                }
             }
-	    else
-	    {
-                self.send("Error occured while pushing to git. Please check credentials", self.slack.dataStore.getChannelByName("general"));
-	    }
+	    
         });
     }
 
@@ -186,15 +187,18 @@ class Bot {
         request(options, function(error, response, body) {
             //var obj = JSON.parse(body);
             if (!error) {
-			console.log(response.body.errors);
-			console.log(response.statusCode);
-                if (cb) {
-                    cb();
+    			console.log(response.body.errors);
+    			console.log(response.statusCode);
+                if (response.statusCode.toString().startsWith("2")) 
+                {
+                    if (cb) {
+                        cb();
+                    }
                 }
-            }
-            else
-            { 
-		self.send("Error occured while creating git hook. Hook already created", self.slack.getChannelByName("general"));
+                else
+                {
+                    self.send("Error occured while creating git hook. Hook already created", self.slack.getChannelByName("general"));
+                }
             }
         });
     }
