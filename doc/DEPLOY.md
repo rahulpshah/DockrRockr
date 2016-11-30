@@ -37,7 +37,7 @@ Samrudhi Sharma - ssharm17<br/>
 
 ### Acceptance Testing Instructions - TA
 
-**** Note: Testing should be done on the General channel.
+**** Note: Testing should be done on the General channel. <br/>
 **** Note: The bot can be accessed with the signature @dockr_rockr
 
 
