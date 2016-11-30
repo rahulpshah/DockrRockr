@@ -22,9 +22,9 @@ Samrudhi Sharma - ssharm17<br/>
 
 ### Ansible Playbooks
 
-1.
-2.
-3.
+1. [deploy.yml](https://github.ncsu.edu/jsharda/DockrRockr/blob/master/deploy/deploy.yml)
+2. [setup.yml](https://github.ncsu.edu/jsharda/DockrRockr/blob/master/deploy/setup.yml)
+3. [setup_ami.yml](https://github.ncsu.edu/jsharda/DockrRockr/blob/master/deploy/setup_ami.yml)
 
 ### Steps for Deployment 
 1. pip install boto
