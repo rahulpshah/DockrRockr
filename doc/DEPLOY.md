@@ -13,6 +13,19 @@ Samrudhi Sharma - ssharm17<br/>
 
 [![Screencast](https://i1.ytimg.com/vi/GRadbE_9ZZs/default.jpg)](https://youtu.be/GRadbE_9ZZs)
 
+### Deployment Scripts
+
+1. [install_docker.sh](https://github.ncsu.edu/jsharda/DockrRockr/blob/master/deploy/install_docker.sh)
+2. [install_redis.sh](https://github.ncsu.edu/jsharda/DockrRockr/blob/master/deploy/install_redis.sh)
+3. [script.sh](https://github.ncsu.edu/jsharda/DockrRockr/blob/master/deploy/script.sh)
+4. [setup.sh](https://github.ncsu.edu/jsharda/DockrRockr/blob/master/deploy/setup.sh)
+
+### Ansible Playbooks
+
+1.
+2.
+3.
+
 ### Steps for Deployment 
 1. pip install boto
 2. pip install ansible
