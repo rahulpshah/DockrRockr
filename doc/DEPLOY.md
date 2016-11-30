@@ -22,6 +22,8 @@ Samrudhi Sharma - ssharm17<br/>
 
 ### Acceptance Testing Instructions - TA
 
+Testing should be done on the general channel.
+
 ### Task Tracking
 
 [Time Tracking Worksheet](WORKSHEET.md)
