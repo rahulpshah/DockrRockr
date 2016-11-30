@@ -37,7 +37,9 @@ Samrudhi Sharma - ssharm17<br/>
 
 ### Acceptance Testing Instructions - TA
 
-Testing should be done on the general channel.
+**** Note: Testing should be done on the General channel.
+**** Note: The bot can be accessed with the signature @dockr_rockr
+
 
 ##### Use Case #1 Definition
 ```
@@ -56,10 +58,13 @@ Use Case 1 : Creating the Dockerfile + ChatOps
 ```
 ##### Acceptance Test Instructions for Use Case 1
 
-1.
-2.
-3.
-4.
+1. Clone this repository. Cd into it DockrRockr/deploy. 
+2. Run the command: ansible-playbook -i inventory deploy.yml --extra-vars="SLACK_TOKEN=INSERTTOKENHERE PORT=8081"
+3. A new EC2 instance will be provisioned, this change can be seen the AWS console. This step may take some time.
+4. One the instance is up and provisioned, go to the General channel (#general) and invoke the bot using the command @dockr_rockr hello.
+5. A meesage will be displayed as: Hi, username! What can I do for you today? You can start by asking me to create a docker file.
+6. The next command will be: @dockr_rockr create a docker
+7. A link for a form will be displayed to enter the relevant values.
 
 ##### Use Case #2 Definition
 ```
