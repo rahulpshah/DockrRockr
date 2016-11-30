@@ -116,6 +116,7 @@ class Bot {
     }
 
     pushToGit(path,owner, repo,token1, cb) {
+        var self = this;
         var token = "token ".concat(token1);
         
        // var urlRoot = "https://github.ncsu.edu/api/v3";
@@ -153,7 +154,7 @@ class Bot {
                 }
                 else
                 {
-                    self.send("Error occured while pushing to git. Please check credentials", self.slack.dataStore.getChannelByName("general"));
+                    self.send("Error occured while pushing to git. Please check credentials or dockerfile already exists", self.slack.dataStore.getChannelByName("general"));
                 }
             }
 	    
@@ -161,6 +162,7 @@ class Bot {
     }
 
     createGitHook(owner, repo, token1,cb) {
+        var self = this;
         var token = "token ".concat(token1);
 
         //var urlRoot = "https://github.ncsu.edu/api/v3";
@@ -197,7 +199,7 @@ class Bot {
                 }
                 else
                 {
-                    self.send("Error occured while creating git hook. Hook already created", self.slack.getChannelByName("general"));
+                    self.send("Error occured while creating git hook. Hook already created", self.slack.dataStore.getChannelByName("general"));
                 }
             }
         });
@@ -237,10 +239,9 @@ class Bot {
                             }
                             else
                             {
-                                self.send('File uploaded', json.channel);
                                 self.pushToGit(`Dockerfile`, json.gitUsername, json.repo,json.gitToken, function(err, res)
                                 {
-                                    self.send('File Pushed on your Git Repository!', json.channel);
+                                    
                                     self.createGitHook(json.gitUsername, json.repo, json.gitToken,function(err, res) 
                                     {
                                          if(err)
@@ -250,6 +251,7 @@ class Bot {
                                          else
                                          {
                                             self.send('Git Hook Created', json.channel);
+                                            self.send('File Pushed on your Git Repository!', json.channel);
                                          }
                                          
                                     });
