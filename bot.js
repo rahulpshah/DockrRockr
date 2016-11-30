@@ -309,14 +309,8 @@ class Bot {
                 password:     v_password
             },
             passwordPrompt: ":",
-            commands: ["sudo su", "service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master","docker stop $(docker ps -a -q)","docker rm $(docker ps -a -q)", "docker build --no-cache=true -t "+app_name+" ."],
-            onError: function(err, type){
-                if(err)
-                {
-                    self.send("Build Failed. Check your code at given instance", self.slack.dataStore.getChannelByName("general"));    
-                }
-                
-            }
+            commands: ["sudo su", "service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master","docker stop $(docker ps -a -q)","docker rm $(docker ps -a -q)", "docker build --no-cache=true -t "+app_name+" ."]
+            
         };
 
         var SSH2Shell = require ('ssh2shell'),
