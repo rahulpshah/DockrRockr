@@ -1,0 +1,23 @@
+---
+  - name: Configure Instance
+    hosts: launched
+    remote_user: ec2-user
+    tasks:
+    - name: Download the project from git
+      git: repo=http://www.github.com/rahulpshah/DockrRockr.git dest=~/DockrRockr
+    - name: Install forever
+      npm: name=forever global=yes state=present
+      become: true
+    - name: Install project dependencies
+      npm: path=~/DockrRockr/
+    - name: Start Redis
+      command: /usr/bin/redis-server
+      ignore_errors: yes
+      async: 45
+      poll: 0
+    - name: stop DockrRockr
+      command: forever stopall
+    - name: start DockrRockr
+      command: forever start index.js chdir=~/DockrRockr 
+      async: 45
+      poll: 0
