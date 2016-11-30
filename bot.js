@@ -295,7 +295,7 @@ class Bot {
                 password:     v_password
             },
             passwordPrompt: ":",
-            commands: ["sudo su", "service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master","docker stop $(docker -a -q)","docker rm $(docker -a -q)", "docker build --no-cache=true -t "+app_name+" ."]
+            commands: ["sudo su", "service docker restart", "git clone https://github.com/" + gitRepo, "cd " + v_repoName, "git pull origin master","docker stop $(docker -a -q)","docker rm $(docker -a -q)", "docker build --no-cache=true -t "+app_name+" ."],
             onError: function(err, type){
                 if(err)
                 {
