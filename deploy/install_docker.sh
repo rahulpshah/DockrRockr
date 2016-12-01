@@ -3,3 +3,4 @@
 # Here username is the user who wishes to deploy the app
 curl -sSL https://get.docker.com/ | sh
 sudo usermod -aG docker <username>
+sudo service docker start
