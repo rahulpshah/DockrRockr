@@ -37,7 +37,15 @@ A user wants to easily deploy an application which can be accessed by a public U
 
 ### Your reflection on the development process and project.
 
+#### Development Process:
+1. <br/> 
+2. <br/>
+3. <br/>
+
 #### Project Development Challenges
+1. <br/>
+2. <br/>
+3. <br/>
 
 ### Any limitations and future work.
 
