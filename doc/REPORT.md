@@ -26,10 +26,11 @@ A user wants to easily deploy an application which can be accessed by a public U
 ### Primary features and screenshots.
 
 #### Primary Features
-1.
-2.
-3.
-4.
+1. Dockerizes an existing application.
+2. Slack bot created which uses chat-ops to communicate with developer.
+3. Deploys the docker image.
+4. Picks up the changes made to the application, and rebuilds image, and deployment process.
+
 #### Screenshots
 #### Screencast
 [![Screencast](https://i1.ytimg.com/vi/0pQsqXLqczQ/default.jpg)](https://youtu.be/0pQsqXLqczQ)
