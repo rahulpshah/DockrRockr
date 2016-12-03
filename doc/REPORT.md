@@ -1,11 +1,39 @@
+#### Bot Name: DockrRockr
+
+Team Members: <br/>
+Krunal Gala - kgala <br/>
+Jigar Sharda - jsharda<br/>
+Shrey Sanghavi - ssangha<br/>
+Rahul Shah - rshah5<br/>
+Samrudhi Sharma - ssharm17<br/>
+
 ## Report
 
-Prepare a report that summarizes:
+Deliverable: Prepare a report that summarizes:
 
 ### The problem your bot solved
+
+The main purpose of DockrRockr is to expedite the deployment process. The configuration he needs to provide are the credentials of the database and dockerhub and reset everything is handled by the bot. Any changes that the user does to the code, will be detected by the bot and the user will have an option to deploy it on AWS.<br/>
+
+A user wants to easily deploy an application which can be accessed by a public URL. The user faces a myriad of problems which are stated below: 
+
+1. The developer has to make a lot of configurations to deploy an application.
+2. The commands are repetitive which can be easily automated.
+3. The user has to constantly check the build and deploy status 
+4. Docker has a learning curve.
+5. Changes made to the application should be automatically picked up, and integrated into the build process.
+
 ### Primary features and screenshots.
+
+#### Primary Features
+1.
+2.
+3.
+4.
+#### Screenshots
 #### Screencast
 [![Screencast](https://i1.ytimg.com/vi/0pQsqXLqczQ/default.jpg)](https://youtu.be/0pQsqXLqczQ)
 
 ### Your reflection on the development process and project.
+
 ### Any limitations and future work.
