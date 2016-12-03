@@ -41,6 +41,6 @@ A user wants to easily deploy an application which can be accessed by a public U
 
 ### Any limitations and future work.
 
-Features that can be added:
+Features that can be added:<br/>
 1. Storing credentials of the user, so that he must not enter the credentials for another repo that has to be dockerized. <br/>
 2. Providing cloud providers as a stub, rather than providing AWS as the only option. <br/>
